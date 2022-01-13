@@ -1,0 +1,22 @@
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Containers</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+       {{#if isHome}}       
+        <li class="active"><a href="/">Main</a></li>
+        {{else}}
+        <li><a href="/">Main</a></li>
+        {{/if}}
+        {{#if isContainers}}  
+        <li class="active"><a href="/containers">Containers</a></li>
+        {{else}}
+        <li><a href="/containers">Containers</a></li>
+        {{/if}}
+        {{#if isAdd}}
+        <li class="active"><a href="/add">Add container</a></li>
+        {{else}}
+        <li><a href="/add">Add container</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>

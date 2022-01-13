@@ -1,0 +1,28 @@
+<h1>Edit container information</h1>
+<form action="/containers/update" method="POST">
+    <div class="input-field">
+        <input id="number" name="number" type="text" pattern = "[A-Z]{4}[0-9]{7}" class="validate" required value="{{container.number}}">
+        <label for="number">Container number XXXX0000000</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+        </div>
+
+    <div class="input-field">
+       <input id="size" name="size" type="text" pattern = "20|40|45" class="validate" required value="{{container.size}}"> 
+       <label for="size">Container size 20/40/45</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+    </div>
+
+    <div class="input-field">
+       <input id="status" name="status" type="text" pattern = "IMP|EXP" class="validate" required value="{{container.status}}">
+       <label for="status">Container status IMP/EXP</label>
+       <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+    </div>
+    <input id="id" name="id" type="hidden" value="{{container.id}}">
+
+    <button class="btn btn-primary">save container</button>
+    {{!-- <button class="btn btn-aditional" >Discharge changes</button> --}}
+</form>
+
+
+ 
+

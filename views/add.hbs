@@ -1,0 +1,31 @@
+<h1>Add container information</h1>
+<label for="add-containers-from-table"><input id="add-containers-from-table" type="file" hidden >
+<a type="file" class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">file_download</i></a>
+</label>
+<form action="/add" method="POST">
+    <div class="input-field">
+        <input id="number" name="number" type="text" pattern = "[A-Z]{4}[0-9]{7}" class="validate" required>
+        <label for="number">Container number XXXX0000000</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+        </div>
+
+    <div class="input-field">
+       <input id="size" name="size" type="text" pattern = "20|40|45" class="validate" required> 
+       <label for="size">Container size 20/40/45</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+    </div>
+
+    <div class="input-field">
+       <input id="status" name="status" type="text" pattern = "IMP|EXP" class="validate" required>
+       <label for="status">Container status IMP/EXP</label>
+       <span class="helper-text" data-error="wrong" data-success="right">Helper number</span>
+    </div>
+
+    <button class="btn btn-primary">Add container</button>
+    {{!-- <button class="btn btn-aditional" disabled>Write more information</button> --}}
+</form>
+
+
+
+ 
+

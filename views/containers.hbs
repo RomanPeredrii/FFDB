@@ -1,0 +1,38 @@
+{{#if containers.length }}
+    
+        <table class = "striped highlight centered">
+            {{!-- <thead>
+            <tr class = "tHead">
+                <th >Number</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Edit</th>
+                </tr>
+            </thead> --}}
+    {{#each containers}}
+            <tbody>
+            <tr>
+                <td class = "titleTr">{{number}}</td>
+                <td class = "size">{{size}}</td>
+                <td class = "status">{{status}}</td>
+                <td class = "editButton"> 
+                    <i class="material-icons">edit</i>
+                    {{!-- <input type = "button" name = "edit" value="Edit"></input> --}}
+                </td>
+                <td class = "planing"> 
+                    <label>
+                        <input type="checkbox" class="plan" name = "planed" value={{id}}/>                        
+                        <span></span>
+                    </label>
+                </td>    
+            </tr>
+            </tbody>
+        
+    {{/each}}
+        </table>
+{{else}}
+<p>Nothing there</p>
+{{/if}}
+<a class="addToActualPlan btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+
+
