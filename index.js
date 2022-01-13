@@ -9,7 +9,7 @@ const addRoutes = require('./routes/add')
 const containersRoutes = require('./routes/containers')
 const homeRoutes = require('./routes/home')
 const containerRoutes = require('./routes/container')
-const editContainerRoutes = require('./routes/editContainer')
+// const editContainerRoutes = require('./routes/editContainer')
 const makePlan = require('./routes/makePlan')
 const mongoose = require('mongoose')
 
@@ -39,7 +39,7 @@ app.use('/add', addRoutes)
 app.use('/containers', containersRoutes)
 app.use('/', homeRoutes)
 app.use('/container', containerRoutes)
-app.use('/editContainer', editContainerRoutes)
+// app.use('/editContainer', editContainerRoutes)
 app.use('/makePlan', makePlan)
 
 

@@ -2,8 +2,11 @@ const log = console.log
 
 const {Router} = require('express')
 const router = Router()
-const Container = require('../models/container.js')
+const Container = require('../models/container')
+
+
 router.get('/', (req, res) => {
+/****** render Add page *******/ log('here add')
     res.render('add', {
         title: 'Add',
         isAdd: true
@@ -11,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-// const container = new Container(req.body.number, req.body.size, req.body.status)
+/****** add new container *******/ log('add new container')
 const container = new Container({
     number: req.body.number, 
     size: req.body.size, 
