@@ -4,14 +4,31 @@ const log = console.log
 
 const containerEditInformation = document.querySelectorAll('.editButton').forEach(node => {    
     node.addEventListener("click", async () => {
-        log(node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim())
+        // log(node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim())
         const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
-        log('CONTAINER ID FOR EDIT', id)
+        // log('CONTAINER ID FOR EDIT', id)
         window.location.href=`/container/${id}/edit?allow=true`
         
-    })
-    
+    })    
 })
+
+const containerDeleteiformation = document.querySelectorAll('.deleteButton').forEach(node => {    
+    node.addEventListener("click", async () => {
+        // log(node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim())
+        const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
+        log('CONTAINER ID FOR DELETE', id)
+        const fetchData = {
+        method: 'DELETE', 
+        // body: JSON.stringify(id)
+        }
+
+      log(fetchData.body)
+      await fetch(`/container/${id}/delete`, fetchData) 
+
+        // window.location.href=`/container/${id}/delete`
+        
+    })
+})    
 
 const containerSortInformation = document.querySelectorAll('.titleTr').forEach(node => {        
     node.addEventListener("click", () => {

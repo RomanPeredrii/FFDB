@@ -15,16 +15,18 @@
                 <td class = "titleTr">{{number}}</td>
                 <td class = "size">{{size}}</td>
                 <td class = "status">{{status}}</td>
-                <td class = "editButton"> 
-                    <i class="material-icons">edit</i>
-                    {{!-- <input type = "button" name = "edit" value="Edit"></input> --}}
-                </td>
                 <td class = "planing"> 
                     <label>
                         <input type="checkbox" class="plan" name = "planed" value={{id}}/>                        
                         <span></span>
                     </label>
-                </td>   
+                </td>                
+                <td class = "editButton"> 
+                    <i class="material-icons">edit</i>
+                </td>
+                <td class = "deleteButton"> 
+                    <i class="material-icons">delete_forever</i>
+                </td>
                 <td class = "status" hidden>{{id}}</td> 
             </tr>
             </tbody>

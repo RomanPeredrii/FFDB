@@ -29,6 +29,7 @@ router.post('/edit', async (req, res) => {
     log('body = ', req.body)
     try {
         await Container.findOneAndUpdate(id, req.body)    
+        res.redirect('/containers')
     
     } catch (error) {
         log('EDIT CONTAINER ERROR', error)   
