@@ -1,23 +1,23 @@
 const log = console.log
 
 const filesExecute = (e, socket) => {
-    // handleFileSelect(e);  
+     
     const handleDragOver = (e) => {
       e.stopPropagation();
       e.preventDefault();
       e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
     }  
     // Setup the dnd listeners.  
-    const dropZone = document.getElementById('message');
-    dropZone.addEventListener('dragover', handleDragOver);
-    dropZone.addEventListener('drop', handleFileSelect); 
+    // const dropZone = document.getElementById('message');
+    // dropZone.addEventListener('dragover', handleDragOver);
+    // dropZone.addEventListener('drop', handleFileSelect); 
   
-    parseFile = (file, callback) => {
-        const fileSize = file.size;
-        const chunkSize = 64 * 1024; // bytes
-        const offset = 0;
-        const self = this; // we need a reference to the current object
-        const chunkReaderBlock = null;
+    const parseFile = (file, callback) => {
+        let fileSize = file.size;
+        let chunkSize = 64 * 1024; // bytes
+        let offset = 0;
+        let self = this; // we need a reference to the current object
+        let chunkReaderBlock = null;
   
       
         const readEventHandler = (evt) => {
@@ -38,7 +38,7 @@ const filesExecute = (e, socket) => {
       };
   
   
-      chunkReaderBlock = function (_offset, length, _file) {
+      chunkReaderBlock = (_offset, length, _file) => {
         const r = new FileReader();
         let blob = _file.slice(_offset, length + _offset);
         r.onload = readEventHandler;
@@ -81,6 +81,7 @@ const filesExecute = (e, socket) => {
         // })(f, e);
       }
     }
+    handleFileSelect(e); 
 }
 
 document.querySelectorAll('.editButton').forEach(node => {    
