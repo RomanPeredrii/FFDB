@@ -21,12 +21,21 @@ router.get('/', async (req, res) => {
 
 
 
-router.post('/update', async (req, res) => {
-/******* get all containers here *******/    log('here containers page update', req.body)
-    const containers = await Container.find()
-    // await containers.update(req.body)
+router.post('/edit', async (req, res) => {
+/******* get all containers here *******/    log('here container edit & containers page update', req.body)
+const {id} = req.body
+log('id = ', id)
+delete req.body.id
+log('body = ', req.body)
+try {
+    await Container.findOneAndUpdate(id, req.body)    
+
+} catch (error) {
+    log('EDIT CONTAINER ERROR', error)   
+}
+
+
     
-    res.redirect('/containers')
 
 })
 
