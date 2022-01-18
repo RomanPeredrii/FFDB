@@ -5,6 +5,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const express = require('express')
 const path = require('path')
 const app = express()
+const { io } = require("socket.io-client");
 const addRoutes = require('./routes/add')
 const containersRoutes = require('./routes/containers')
 const homeRoutes = require('./routes/home')
