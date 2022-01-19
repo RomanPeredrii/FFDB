@@ -1,88 +1,6 @@
 const log = console.log
 
-const filesExecute = (e, socket) => {
-     
-    const handleDragOver = (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-    }  
-    // Setup the dnd listeners.  
-    // const dropZone = document.getElementById('message');
-    // dropZone.addEventListener('dragover', handleDragOver);
-    // dropZone.addEventListener('drop', handleFileSelect); 
-  
-    const parseFile = (file, callback) => {
-        let fileSize = file.size;
-        let chunkSize = 64 * 1024; // bytes
-        let offset = 0;
-        let self = this; // we need a reference to the current object
-        let chunkReaderBlock = null;
-  
-      
-        const readEventHandler = (evt) => {
-        if (evt.target.error == null) {
-          offset += evt.target.result.length;
-          callback(evt.target.result); // callback for handling read chunk
-        } else {
-          console.log("Read error: " + evt.target.error);
-          return;
-        }
-        if (offset >= fileSize) {
-          console.log("Done reading file");
-          return;
-        }
-  
-        // of to the next chunk
-        chunkReaderBlock(offset, chunkSize, file);
-      };
-  
-  
-      chunkReaderBlock = (_offset, length, _file) => {
-        const r = new FileReader();
-        let blob = _file.slice(_offset, length + _offset);
-        r.onload = readEventHandler;
-        r.readAsText(blob);
-      };
-  
-      // now let's start the read with the first block
-      chunkReaderBlock(offset, chunkSize, file);
-    }
-  
-    const handleFileSelect = (e) => {
-  
-      let files = e.target.files; // FileList object
-      // Loop through the FileList and render image files as thumbnails.
-      for (let i = 0, f; f = files[i]; i++) {
-        //log(files);
-        // Only process image files.
-        //if (!f.type.match('image.*')) continue;
-  
-        log(f.size);
-        let slice = f.slice(0, f.size);
-        const reader = new FileReader();
-        const binaryReader = new FileReader();   // for read binary data
-        binaryReader.readAsBinaryString(slice);
-  
-        parseFile(f, (chunk) => {
-          log(chunk.length);
-        });
-  
-        binaryReader.onload = (e, f, socket) => {  
-          window.socket.emit('uploadFile', e.target.result);
-        };
-  
-        reader.readAsDataURL(f);
-        // reader.onload = (function (f) {
-        //   return function (e) {
-        //     let allMessages = document.querySelector('.allMessages');
-        //     allMessages.innerHTML += `<img src=" ${e.target.result}" title=" ${escape(f.name)}"/>`
-        //   }
-        // })(f, e);
-      }
-    }
-    handleFileSelect(e); 
-}
+
 
 document.querySelectorAll('.editButton').forEach(node => {    
     node.addEventListener("click", async () => {
@@ -131,11 +49,28 @@ document.querySelectorAll('.titleTr').forEach(node => {
 // })
 
 const addFromTable = document.querySelector('#add-containers-from-table')
-addFromTable.addEventListener('change', (e) => {
-    const socket = io()
-    log('MAIN_EVENT', e); 
-    log('MAIN_SOCKET', socket)  
-    filesExecute(e, socket); 
+addFromTable.addEventListener('change', async (e) => {
+  // log('EVENT', e.target.value); 
+  log('EVENT', e.target); 
+  if (!e.target.files.length) {return}
+  const file = Array.from(e.target.files)
+  if (file[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { return } 
   
+  const formData = new FormData();
+  formData.append('file', e.target.files[0]);
+  log('EVENT', formData); 
+  try {
+    const response = await fetch('/containers/add-many', {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
+    log('Успех:', JSON.stringify(result));
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+
+
+ 
 });
 

@@ -2,8 +2,14 @@ const log = console.log
 const {Router} = require('express')
 const Container = require('../models/container')
 const router = Router()
-const { Server } = require("socket.io");
+const path = require('path')
+const moment = require('moment');
+const multer  = require('multer')
+const upload = multer({ dest: '/data/' })
 
+
+const dateTime = () => { return (moment().locale('us').format('MMMM Do YYYY, hh:mm:ss a')) }
+log(dateTime());
 
 
 
@@ -19,11 +25,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         log('GET ALL CONTAINERS ERROR', error)        
     }
-    
-
 })
-
-
 
 router.post('/edit', async (req, res) => {
     /******* get all containers here *******/    log('here container edit & containers page update', req.body)
@@ -38,10 +40,13 @@ router.post('/edit', async (req, res) => {
     } catch (error) {
         log('EDIT CONTAINER ERROR', error)   
     }
-
-
-
-
 })
+
+router.post('/add-many', upload.single(`file`), async (req, res) => {
+    log(req.target)
+    log(`ADD MANY`, dateTime() + '_' + req.file.originalname)
+
+
+} )
 
 module.exports = router

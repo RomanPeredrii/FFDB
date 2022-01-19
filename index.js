@@ -2,10 +2,9 @@ const log = console.log
 const Handlebars = require('handlebars')
 const expHBS = require('express-handlebars')
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
-const app = require('express')()
+const express = require('express')
+const app = express()
 const path = require('path')
-const http = require('http').Server(app);
-const io = require('socket.io')(http); 
 const addRoutes = require('./routes/add')
 const containersRoutes = require('./routes/containers')
 const homeRoutes = require('./routes/home')
@@ -13,8 +12,9 @@ const containerRoutes = require('./routes/container')
 const makePlan = require('./routes/makePlan')
 const mongoose = require('mongoose')
 
+
 app.use(express.static('public'))
-io.listen(3001);
+
 
 const hbs = expHBS.create({
     handlebars: allowInsecurePrototypeAccess(Handlebars),
@@ -25,14 +25,12 @@ const hbs = expHBS.create({
 const PORT = process.env.PORT || 3000
 
 
-
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 app.use(express.json({
     type: ['application/json', 'text/plain']
-  }))
-
+}))
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use('/add', addRoutes)
