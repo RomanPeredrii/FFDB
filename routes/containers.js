@@ -5,13 +5,11 @@ const router = Router()
 const path = require('path')
 const moment = require('moment');
 const multer  = require('multer')
-const upload = multer({ dest: '/data/' })
+const upload = multer({ dest: './bufer' })
 
 
 const dateTime = () => { return (moment().locale('us').format('MMMM Do YYYY, hh:mm:ss a')) }
 log(dateTime());
-
-
 
 router.get('/', async (req, res) => {
 /******* get all containers here *******/  log('here containers')
@@ -42,9 +40,10 @@ router.post('/edit', async (req, res) => {
     }
 })
 
-router.post('/add-many', upload.single(`file`), async (req, res) => {
-    log(req.target)
-    log(`ADD MANY`, dateTime() + '_' + req.file.originalname)
+router.post('/add-many', upload.single('file'), async (req, res) => {
+
+    
+    log(`INCOMING FILE`,  req.file)
 
 
 } )
