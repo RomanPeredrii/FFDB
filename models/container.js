@@ -8,12 +8,35 @@ const container = new Schema ({
     },
     size: {
         type: String,
-        required: true
+        required: false /** temp **/
     },
     status: {
         type: String,
-        required: true
+        required: false /** temp **/
+    },
+    client: {
+        type: String
+    },
+    POL: {
+        type: String,
+    },
+    POD: {
+        type: String,
+    },
+    line: {
+        type: String,
+    },
+    vessel: {
+        type: String,
+    },
+    BL: {
+        type: String,
+    },
+    FD: {
+        type: String
     }
+
+
 
 })
 
