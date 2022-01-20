@@ -54,7 +54,10 @@ document.querySelectorAll('.titleTr').forEach(node => {
 const addFromTable = document.querySelector('#add-containers-from-table')
 .addEventListener('change', async (e) => {
   if (!e.target.files.length) { return }
-  if (e.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { return } 
+  if (e.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { 
+    log('WRONG TYPE')
+    window.alert('WRONG TYPE')
+    return } 
   
   const formData = new FormData();
   formData.append('file', e.target.files[0]);

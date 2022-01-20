@@ -6,6 +6,7 @@ const path = require('path')
 const moment = require('moment');
 const multer  = require('multer')
 const upload = multer({ dest: './bufer' })
+const xlsx = require('xlsx')
 
 
 const dateTime = () => { return (moment().locale('us').format('MMMM Do YYYY, hh:mm:ss a')) }
@@ -41,9 +42,15 @@ router.post('/edit', async (req, res) => {
 })
 
 router.post('/add-many', upload.single('file'), async (req, res) => {
+    const wb = xlsx.readFile(path.join(__dirname, '..', req.file.path))
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const data = xlsx.utils.sheet_to_json(ws)
 
-    
-    log(`INCOMING FILE`,  req.file)
+        
+    log('data', data)   
+
+/****************CURRENT POSITION****************************/
+
 
 
 } )
