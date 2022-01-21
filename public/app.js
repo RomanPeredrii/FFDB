@@ -1,3 +1,5 @@
+// const { stringify } = require("uuid")
+
 const log = console.log
 
 
@@ -65,12 +67,12 @@ const addFromTable = document.querySelector('#add-containers-from-table')
   try {
     const response = await fetch('/containers/add-many', {
       method: 'POST',
-      body: formData
-    });
+      body: formData,
+      });
     const result = await response.json()
     /******interim******/log('SUCCESS:', JSON.stringify(result))
   } catch (error) {
-    /******interim******/log('UPLOAD ERROR:', error)
+    /******interim******/log('UPLOAD ERROR:'); window.alert(error)
   } 
 });
 

@@ -48,46 +48,68 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const ws = wb.Sheets[wb.SheetNames[0]];
     const data = xlsx.utils.sheet_to_json(ws)
     const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size']
+
         
-    data.forEach(record => {        
+    data.forEach(async (record) => {      
+
+        
+        /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
         if (record['20']) { record.size = 20; delete record['20'] } 
         if (record['40']) { record.size = 40; delete record['40'] } 
-        
+        /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/
+
+
+
         const fields = Object.keys(record)
-                fields.forEach(field => {
-                    record[`${field}`] = record[`${field}`].toString().trim()
-                    if (!validFields.includes(field)) {
-                        delete record[`${field}`]
-                    }
-                })
-         })
-
-         const container = new Container(data)
-log(container)
-            try {
-                await container.save() 
-                     
-            } catch (error) {
-                log('ADD MANY CONTAINERS ERROR', error)
-                
+        fields.forEach(field => {
+            record[`${field}`] = record[`${field}`].toString().trim()
+            if (!validFields.includes(field)) {
+                delete record[`${field}`]
             }
-         
+        })
+ 
+        try {
+            await Container.findOneAndUpdate(
+                {
+                    number: record.number
+                }, 
+                {
+                    number: record.number,
+                    size: record.size,                       
+                    status: record.status,
+                    client: record.client,
+                    POL: record.POL,
+                    POD: record.POD,
+                    line: record.line,
+                    vessel: record.vessel,
+                    BL: record.BL,
+                    FD: record.FD
+                }, 
+                {
+                    new: true,
+                    upsert: true 
+                })                
+                
+        } catch (error) {
+            log('ADD MANY CONTAINERS ERROR', error)                
+        }
+    })
 
-    // log(data)
-
-    
     try {
         await fs.unlink(file, (error) => {
             if (error) throw error
-            else {log(`${file} deleted`)}
+            else {
+                log(`${file} deleted`)
+                // res.redirect('/containers')
+            }
     })        
     } catch (error) {
-        log('DEL BUFER ERROR', error)        
+        log('DEL BUFFER ERROR', error)        
     }
 
-/****************CURRENT POSITION****************************/
+   
 
-
+    
 
 } )
 
