@@ -57,8 +57,19 @@ if ((record['20'] || record['40'])  > 1) {
 
     log('number', record.number.trim().split(' '))
  /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
-    record.number.trim().split(' ').flatMap((number) => {
-
+    record.number.trim().split(' ').forEach((number) => {
+        let newRecord = new Object = {
+                    number = number,
+                    size = record.size,                       
+                    status = record.status,
+                    client = record.client,
+                    POL = record.POL,
+                    POD = record.POD,
+                    line = record.line,
+                    vessel = record.vessel,
+                    BL = record.BL,
+                    FD = record.FD
+                },
         
     })
     // record.size = 20; delete record['20'] 
@@ -70,7 +81,6 @@ if ((record['20'] || record['40'])  > 1) {
 
         /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
         // if (record['20']) { record.size = 20; delete record['20'] } 
-
         // if (record['40']) { record.size = 40; delete record['40'] } 
         /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/
 
