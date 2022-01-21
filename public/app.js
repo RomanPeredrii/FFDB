@@ -35,7 +35,7 @@ document.querySelectorAll('.titleTr').forEach(node => {
 /*************** AFTER **********/
 
 
-// const addToActualPlan = document.querySelector('.addToActualPlan').addEventListener('click', async () => {
+// document.querySelector('.addToActualPlan').addEventListener('click', async () => {
 //     log('click')
 //     const data = [] 
 //     document.querySelectorAll('.planing input:checked').forEach(async (node) => {
@@ -53,7 +53,7 @@ document.querySelectorAll('.titleTr').forEach(node => {
 //     await fetch('/makePlan', dataForFetch) 
 // })
 
-const addFromTable = document.querySelector('#add-containers-from-table')
+document.querySelector('#add-containers-from-table')
 .addEventListener('change', async (e) => {
   if (!e.target.files.length) { return }
   if (e.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { 

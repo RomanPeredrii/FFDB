@@ -47,48 +47,68 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const wb = xlsx.readFile(file)
     const ws = wb.Sheets[wb.SheetNames[0]];
     const data = xlsx.utils.sheet_to_json(ws)
-    const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size']
+    const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size', 'FD']
+
+  /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/       
+log(`record`, record)
+data.forEach(record =>{
+
+if ((record['20'] || record['40'])  > 1) { 
+
+    log('number', record.number.trim().split(' '))
+ /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
+    record.number.trim().split(' ').flatMap((number) => {
 
         
+    })
+    // record.size = 20; delete record['20'] 
+}  
+})
+
     data.forEach(async (record) => {      
 
-        
+
         /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
-        if (record['20']) { record.size = 20; delete record['20'] } 
-        if (record['40']) { record.size = 40; delete record['40'] } 
+        // if (record['20']) { record.size = 20; delete record['20'] } 
+
+        // if (record['40']) { record.size = 40; delete record['40'] } 
         /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/
 
 
 
-        const fields = Object.keys(record)
-        fields.forEach(field => {
+
+        
+
+        Object.keys(record).forEach(field => {
             record[`${field}`] = record[`${field}`].toString().trim()
             if (!validFields.includes(field)) {
                 delete record[`${field}`]
             }
         })
+
+
  
         try {
-            await Container.findOneAndUpdate(
-                {
-                    number: record.number
-                }, 
-                {
-                    number: record.number,
-                    size: record.size,                       
-                    status: record.status,
-                    client: record.client,
-                    POL: record.POL,
-                    POD: record.POD,
-                    line: record.line,
-                    vessel: record.vessel,
-                    BL: record.BL,
-                    FD: record.FD
-                }, 
-                {
-                    new: true,
-                    upsert: true 
-                })                
+            // await Container.findOneAndUpdate(
+            //     {
+            //         number: record.number
+            //     }, 
+            //     {
+            //         number: record.number,
+            //         size: record.size,                       
+            //         status: record.status,
+            //         client: record.client,
+            //         POL: record.POL,
+            //         POD: record.POD,
+            //         line: record.line,
+            //         vessel: record.vessel,
+            //         BL: record.BL,
+            //         FD: record.FD
+            //     }, 
+            //     {
+            //         new: true,
+            //         upsert: true 
+            //     })                
                 
         } catch (error) {
             log('ADD MANY CONTAINERS ERROR', error)                
