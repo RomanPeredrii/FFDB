@@ -46,54 +46,46 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const file = path.join(__dirname, '..', req.file.path)
     const wb = xlsx.readFile(file)
     const ws = wb.Sheets[wb.SheetNames[0]];
-    const data = xlsx.utils.sheet_to_json(ws)
+    let data = xlsx.utils.sheet_to_json(ws)
     const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size', 'FD']
     let newData = []
-    let i = 0
+    let rawData = []
+
     
 
-    data.map(record =>{
+    data.map((record, i) =>{
         if ((record['20'] || record['40'])  > 1) {             
-
-            /****************CURRENT POSITION*************************** BUG WITH newData.push(newRecord) 
-             newRecord GENERATE GREAT *************/  
-
             record.number.trim().split(' ').map((number) => {
-                log('number', number, record.client)
-                let newRecord = new Object(record)
-                newRecord.number = number
-                // ????????????????????
-              
-                log (i, 'newRecord', newRecord)
-                newData.push(i, newRecord)
-                // newRecord = {}
-                i++
-                log(i, `newData`, newData)  /*****  */
-                // ????????????
-                
-                })      
-        } else { return } 
+                record.number = number
+                rawData.push(Object.entries(record))
+            })   
+            data.splice(i,1)
+        } else { return }         
     })
-    
+    newData = rawData.map(entries => {
+        return Object.fromEntries(entries)
+    })
+    data = data.concat(newData)
 
-  
-    
+    // log(data)
 
     data.forEach(async (record) => {      
 
 
-        
-        if (record['20']) { record.size = 20; delete record['20'] } 
-        if (record['40']) { record.size = 40; delete record['40'] } 
-               
+            /****************CURRENT POSITION***************
+             adjustment names fields & entries *************/  
 
+        if (record['20']) { record.size = 20; delete record['20'] } 
+        if (record['40']) { record.size = 40; delete record['40'] }    
         Object.keys(record).forEach(field => {
             record[`${field}`] = record[`${field}`].toString().trim()
             if (!validFields.includes(field)) {
                 delete record[`${field}`]
             }
         })
- 
+
+        // log(record)
+
         try {
             // await Container.findOneAndUpdate(
             //     {
@@ -125,9 +117,9 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
         await fs.unlink(file, (error) => {
             if (error) throw error
             else {
-                log(`${file} deleted`)
-              }
-    })        
+                log(`BUFFER: ${file} deleted`)
+            }
+        })        
     } catch (error) {
         log('DEL BUFFER ERROR', error)        
     }

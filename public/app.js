@@ -72,7 +72,7 @@ document.querySelector('#add-containers-from-table')
     const result = await response.json()
     /******interim******/log('SUCCESS:', JSON.stringify(result))
   } catch (error) {
-    /******interim******/log('UPLOAD ERROR:'); window.alert(error)
+    /******interim******/log('UPLOAD ERROR:'); log(error)
   } 
 });
 
