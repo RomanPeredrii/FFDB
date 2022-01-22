@@ -48,46 +48,44 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const ws = wb.Sheets[wb.SheetNames[0]];
     const data = xlsx.utils.sheet_to_json(ws)
     const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size', 'FD']
+    let newData = []
+    let i = 0
+    
 
-  /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/       
-log(`record`, record)
-data.forEach(record =>{
+    data.map(record =>{
+        if ((record['20'] || record['40'])  > 1) {             
 
-if ((record['20'] || record['40'])  > 1) { 
+            /****************CURRENT POSITION*************************** BUG WITH newData.push(newRecord) 
+             newRecord GENERATE GREAT *************/  
 
-    log('number', record.number.trim().split(' '))
- /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
-    record.number.trim().split(' ').forEach((number) => {
-        let newRecord = new Object = {
-                    number = number,
-                    size = record.size,                       
-                    status = record.status,
-                    client = record.client,
-                    POL = record.POL,
-                    POD = record.POD,
-                    line = record.line,
-                    vessel = record.vessel,
-                    BL = record.BL,
-                    FD = record.FD
-                },
-        
+            record.number.trim().split(' ').map((number) => {
+                log('number', number, record.client)
+                let newRecord = new Object(record)
+                newRecord.number = number
+                // ????????????????????
+              
+                log (i, 'newRecord', newRecord)
+                newData.push(i, newRecord)
+                // newRecord = {}
+                i++
+                log(i, `newData`, newData)  /*****  */
+                // ????????????
+                
+                })      
+        } else { return } 
     })
-    // record.size = 20; delete record['20'] 
-}  
-})
+    
+
+  
+    
 
     data.forEach(async (record) => {      
 
 
-        /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/  
-        // if (record['20']) { record.size = 20; delete record['20'] } 
-        // if (record['40']) { record.size = 40; delete record['40'] } 
-        /****************CURRENT POSITION*************************** NEED TO ADD LOTS EXEXUTER*************/
-
-
-
-
         
+        if (record['20']) { record.size = 20; delete record['20'] } 
+        if (record['40']) { record.size = 40; delete record['40'] } 
+               
 
         Object.keys(record).forEach(field => {
             record[`${field}`] = record[`${field}`].toString().trim()
@@ -95,8 +93,6 @@ if ((record['20'] || record['40'])  > 1) {
                 delete record[`${field}`]
             }
         })
-
-
  
         try {
             // await Container.findOneAndUpdate(
@@ -130,16 +126,11 @@ if ((record['20'] || record['40'])  > 1) {
             if (error) throw error
             else {
                 log(`${file} deleted`)
-                // res.redirect('/containers')
-            }
+              }
     })        
     } catch (error) {
         log('DEL BUFFER ERROR', error)        
     }
-
-   
-
-    
 
 } )
 
