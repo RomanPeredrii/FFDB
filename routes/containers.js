@@ -79,6 +79,20 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
         if (record['40']) { record.size = 40; delete record['40'] }    
         Object.keys(record).forEach(field => {
             record[`${field}`] = record[`${field}`].toString().trim()
+
+            // switch (field) {
+            //     case 'Клиент' || 'Client' || 'client': 'client'
+            //     case 'Линия': 'line'
+            //     case ''
+                    
+            //         break;
+            
+            //     default:
+            //         break;
+            // }
+
+
+
             if (!validFields.includes(field)) {
                 delete record[`${field}`]
             }
