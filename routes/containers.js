@@ -47,58 +47,72 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const wb = xlsx.readFile(file)
     const ws = wb.Sheets[wb.SheetNames[0]];
     let data = xlsx.utils.sheet_to_json(ws)
-    const validFields = [ 'client', 'POL', 'POD', 'line', 'vessel', 'BL', 'number', 'size', 'FD']
+    
+    const fields = {
+        [`Клиент`] : `client`,
+        [`POL`] : `POL`,
+        [`POD`] : `POD`,
+        [`Судозаход`] : `vessel`,
+        [`Линия`] : `line`,
+        [`К-во 20`] : `20`,
+        [`К-во 40`] : `40`,
+        [`Коносамент`] : `BL`,
+        [`Список контейнеров`] : `number` 
+    }
     let newData = []
     let rawData = []
 
     
 
     data.map((record, i) =>{
-        if ((record['20'] || record['40'])  > 1) {             
+
+    /****************CURRENT POSITION***************
+     adjustment names fields & entries *************/  
+
+        // if (record['20']) { record.size = 20; delete record['20'] } 
+        // if (record['40']) { record.size = 40; delete record['40'] } 
+        
+        log('1 ', record)
+
+        Object.keys(record).forEach(field => {
+            if (fields[field.toString().trim()]) {
+                if (record[fields[field.toString().trim()]] != record[field].toString().trim()) {
+                record[fields[field.toString().trim()]] = record[field].toString().trim()
+                delete record[field]     
+                }
+            } else {
+                delete record[field]
+            }
+        })
+
+        log('2 ', record)
+        
+        if ((record['20'] || record['40'])  > 1) {
+            if (record['20']) { record.size = `20`; delete record['20'] } 
+            if (record['40']) { record.size = `40`; delete record['40'] }              
             record.number.trim().split(' ').map((number) => {
+                
                 record.number = number
-                rawData.push(Object.entries(record))
+                // log(record)
+                rawData.push(Object.entries(record)) /** need to try Object.defineProperty(o, nk, Object.getOwnPropertyDescriptor(o, ok)); delete o[ok] */
             })   
             data.splice(i,1)
         } else { return }         
     })
+    // log(rawData)
     newData = rawData.map(entries => {
         return Object.fromEntries(entries)
     })
     data = data.concat(newData)
+    log('data', data)
 
-    // log(data)
+    
+    
+    
 
     data.forEach(async (record) => {      
 
 
-            /****************CURRENT POSITION***************
-             adjustment names fields & entries *************/  
-
-        if (record['20']) { record.size = 20; delete record['20'] } 
-        if (record['40']) { record.size = 40; delete record['40'] }    
-        Object.keys(record).forEach(field => {
-            record[`${field}`] = record[`${field}`].toString().trim()
-
-            // switch (field) {
-            //     case 'Клиент' || 'Client' || 'client': 'client'
-            //     case 'Линия': 'line'
-            //     case ''
-                    
-            //         break;
-            
-            //     default:
-            //         break;
-            // }
-
-
-
-            if (!validFields.includes(field)) {
-                delete record[`${field}`]
-            }
-        })
-
-        // log(record)
 
         try {
             // await Container.findOneAndUpdate(
