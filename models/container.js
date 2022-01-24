@@ -32,6 +32,18 @@ const container = new Schema ({
     },
     FD: {
         type: String
+    },
+    driver: {
+        type: String
+    },
+    weight: {
+        type: String
+    },
+    cargo: {
+        type: String
+    },
+    coments: {
+        type: String
     }
 })
 

@@ -57,26 +57,51 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
         [`К-во 20`] : `20`,
         [`К-во 40`] : `40`,
         [`Коносамент`] : `BL`,
-        [`Список контейнеров`] : `number` 
+        [`Список контейнеров`] : `number`, 
+        [`driver`] : `driver`,
+        [`FD`] : `FD`,
+        [`weight`] : `weight`,
+        [`cargo`] : `cargo`,
+        [`coments`] : `coments`,
+        [`number`] : `number`
     }
     let newData = []
     let rawData = []
 
+
+
+    // log(data)
+
+
 data.map((record, i) =>{
+    // log(i, record)
 
         /****************CURRENT POSITION***************
-        adjustment names fields & entries *************/  
+         uploading daily plan *************/  
 
         Object.keys(record).forEach(field => {
             if (fields[field.toString().trim()]) {
+                // log('field', i, field)
+                log((record[fields[field.toString().trim()]] != record[field].toString().trim()),
+                     record[fields[field.toString().trim()]], record[field].toString().trim())
+
                 if (record[fields[field.toString().trim()]] != record[field].toString().trim()) {
                 record[fields[field.toString().trim()]] = record[field].toString().trim()
-                delete record[field]     
+
+                log('field', field, record[fields[field.toString().trim()]], record[field].toString().trim())
+
+                log('field', field)
+                // delete record[field]     
+                
                 }
             } else {
                 delete record[field]
             }
+            // log('record', i, record)
+
         })
+        log('record 1', i, record)
+
         if (record['20']) { record.size = `20`; delete record['20'] }
         if (record['40']) { record.size = `40`; delete record['40'] }         
         if (record.size  > 1) {
@@ -88,12 +113,14 @@ data.map((record, i) =>{
             })   
             data.splice(data.indexOf(record),1, 0)
         }    
+        log('record 2', i, record)
     })
     newData = rawData.map(entries => {
         return Object.fromEntries(entries)
     })
     data = data.concat(newData)
     data.forEach(async (record, i) => {
+        // log(record, i)
         if (record) {   
             try {
                 await Container.findOneAndUpdate(
@@ -110,7 +137,13 @@ data.map((record, i) =>{
                         line: record.line,
                         vessel: record.vessel,
                         BL: record.BL,
-                        FD: record.FD
+                        FD: record.FD,
+                        driver : record.driver,
+                        weight : record.weight,
+                        cargo : record.cargo,
+                        coments : record.coments,
+                        number : record.number
+
                     }, 
                     {
                         new: true,
