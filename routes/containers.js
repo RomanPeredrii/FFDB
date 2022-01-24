@@ -62,17 +62,10 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     let newData = []
     let rawData = []
 
-    
+data.map((record, i) =>{
 
-    data.map((record, i) =>{
-
-    /****************CURRENT POSITION***************
-     adjustment names fields & entries *************/  
-
-        // if (record['20']) { record.size = 20; delete record['20'] } 
-        // if (record['40']) { record.size = 40; delete record['40'] } 
-        
-        log('1 ', record)
+        /****************CURRENT POSITION***************
+        adjustment names fields & entries *************/  
 
         Object.keys(record).forEach(field => {
             if (fields[field.toString().trim()]) {
@@ -84,60 +77,49 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
                 delete record[field]
             }
         })
-
-        log('2 ', record)
-        
-        if ((record['20'] || record['40'])  > 1) {
-            if (record['20']) { record.size = `20`; delete record['20'] } 
-            if (record['40']) { record.size = `40`; delete record['40'] }              
-            record.number.trim().split(' ').map((number) => {
-                
+        if (record['20']) { record.size = `20`; delete record['20'] }
+        if (record['40']) { record.size = `40`; delete record['40'] }         
+        if (record.size  > 1) {
+            record.number.trim().split(' ').map((number) => {                               
                 record.number = number
-                // log(record)
+
                 rawData.push(Object.entries(record)) /** need to try Object.defineProperty(o, nk, Object.getOwnPropertyDescriptor(o, ok)); delete o[ok] */
+            
             })   
-            data.splice(i,1)
-        } else { return }         
+            data.splice(data.indexOf(record),1, 0)
+        }    
     })
-    // log(rawData)
     newData = rawData.map(entries => {
         return Object.fromEntries(entries)
     })
     data = data.concat(newData)
-    log('data', data)
-
-    
-    
-    
-
-    data.forEach(async (record) => {      
-
-
-
-        try {
-            // await Container.findOneAndUpdate(
-            //     {
-            //         number: record.number
-            //     }, 
-            //     {
-            //         number: record.number,
-            //         size: record.size,                       
-            //         status: record.status,
-            //         client: record.client,
-            //         POL: record.POL,
-            //         POD: record.POD,
-            //         line: record.line,
-            //         vessel: record.vessel,
-            //         BL: record.BL,
-            //         FD: record.FD
-            //     }, 
-            //     {
-            //         new: true,
-            //         upsert: true 
-            //     })                
-                
-        } catch (error) {
-            log('ADD MANY CONTAINERS ERROR', error)                
+    data.forEach(async (record, i) => {
+        if (record) {   
+            try {
+                await Container.findOneAndUpdate(
+                    {
+                        number: record.number
+                    }, 
+                    {
+                        number: record.number,
+                        size: record.size,                       
+                        status: record.status,
+                        client: record.client,
+                        POL: record.POL,
+                        POD: record.POD,
+                        line: record.line,
+                        vessel: record.vessel,
+                        BL: record.BL,
+                        FD: record.FD
+                    }, 
+                    {
+                        new: true,
+                        upsert: true 
+                    })                
+                    
+            } catch (error) {
+                log('ADD MANY CONTAINERS ERROR', error)                
+            }
         }
     })
 
