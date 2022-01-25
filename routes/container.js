@@ -39,8 +39,6 @@ router.get('/:id', async (req, res) => {
 /****** get full container information here *******/    log('GET FULL CONTAINER PARAMS', req.params.id)
     try {
         const container = await Container.findById(req.params.id)
-    // log('container', container)
-
     res.render('container', {
         layout:'empty',
         title: container.number,

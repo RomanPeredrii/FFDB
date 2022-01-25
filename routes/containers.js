@@ -30,9 +30,7 @@ router.get('/', async (req, res) => {
 router.post('/edit', async (req, res) => {
     /******* get all containers here *******/    log('here container edit & containers page update', req.body)
     const {id} = req.body
-    log('id = ', id)
     delete req.body.id
-    log('body = ', req.body)
     try {
         await Container.findOneAndUpdate(id, req.body)    
         res.redirect('/containers')
@@ -46,82 +44,56 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
     const file = path.join(__dirname, '..', req.file.path)
     const wb = xlsx.readFile(file)
     const ws = wb.Sheets[wb.SheetNames[0]];
-    let data = xlsx.utils.sheet_to_json(ws)
-    
+    let data = xlsx.utils.sheet_to_json(ws)    
     const fields = {
         [`Клиент`] : `client`,
         [`POL`] : `POL`,
         [`POD`] : `POD`,
-        [`Судозаход`] : `vessel`,
+        [`Судозаход`] : `vessel`, // NEED TO PARSE DATE & VESSEL
         [`Линия`] : `line`,
         [`К-во 20`] : `20`,
         [`К-во 40`] : `40`,
         [`Коносамент`] : `BL`,
         [`Список контейнеров`] : `number`, 
-        [`driver`] : `driver`,
+        [`driver`] : `driver`,   // NEED TO ADD DATE OF LOADING
         [`FD`] : `FD`,
         [`weight`] : `weight`,
         [`cargo`] : `cargo`,
         [`coments`] : `coments`,
-        [`number`] : `number`
+        [`number`] : `number`,
+        [`client`] : `client`,
+        [`size`] : `size`
     }
     let newData = []
     let rawData = []
-
-
-
-    // log(data)
-
-
-data.map((record, i) =>{
-    // log(i, record)
-
-        /****************CURRENT POSITION***************
-         uploading daily plan *************/  
-
+data.map((record) => {
         Object.keys(record).forEach(field => {
             if (fields[field.toString().trim()]) {
-                // log('field', i, field)
-                log((record[fields[field.toString().trim()]] != record[field].toString().trim()),
-                     record[fields[field.toString().trim()]], record[field].toString().trim())
-
                 if (record[fields[field.toString().trim()]] != record[field].toString().trim()) {
                 record[fields[field.toString().trim()]] = record[field].toString().trim()
-
-                log('field', field, record[fields[field.toString().trim()]], record[field].toString().trim())
-
-                log('field', field)
-                // delete record[field]     
-                
                 }
             } else {
                 delete record[field]
             }
-            // log('record', i, record)
-
         })
-        log('record 1', i, record)
-
         if (record['20']) { record.size = `20`; delete record['20'] }
         if (record['40']) { record.size = `40`; delete record['40'] }         
         if (record.size  > 1) {
             record.number.trim().split(' ').map((number) => {                               
                 record.number = number
 
-                rawData.push(Object.entries(record)) /** need to try Object.defineProperty(o, nk, Object.getOwnPropertyDescriptor(o, ok)); delete o[ok] */
+                rawData.push(Object.entries(record)) /** need to try Object.defineProperty(o, nk, Object.getOwnPropertyDescriptor(o, ok)); delete o[ok] **/
             
             })   
             data.splice(data.indexOf(record),1, 0)
         }    
-        log('record 2', i, record)
     })
     newData = rawData.map(entries => {
         return Object.fromEntries(entries)
     })
     data = data.concat(newData)
-    data.forEach(async (record, i) => {
-        // log(record, i)
-        if (record) {   
+    data.forEach(async (record) => {        
+        if (record && record.number) {
             try {
                 await Container.findOneAndUpdate(
                     {
@@ -141,9 +113,7 @@ data.map((record, i) =>{
                         driver : record.driver,
                         weight : record.weight,
                         cargo : record.cargo,
-                        coments : record.coments,
-                        number : record.number
-
+                        coments : record.coments
                     }, 
                     {
                         new: true,
@@ -153,6 +123,10 @@ data.map((record, i) =>{
             } catch (error) {
                 log('ADD MANY CONTAINERS ERROR', error)                
             }
+        record = null    
+        }
+        else {
+            log(record, 'RECORD WITH NO NUMBER')
         }
     })
 

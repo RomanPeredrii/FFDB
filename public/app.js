@@ -1,7 +1,4 @@
-// const { stringify } = require("uuid")
-
 const log = console.log
-
 
 
 document.querySelectorAll('.editButton').forEach(node => {    
@@ -15,7 +12,6 @@ document.querySelectorAll('.editButton').forEach(node => {
 document.querySelectorAll('.deleteButton').forEach(node => {    
     node.addEventListener("click", async () => {
         const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
-        log('CONTAINER ID FOR DELETE', id)
         const fetchData = {
         method: 'DELETE', 
         }
@@ -23,10 +19,9 @@ document.querySelectorAll('.deleteButton').forEach(node => {
     })
 })    
 
-document.querySelectorAll('.titleTr').forEach(node => {        
+document.querySelectorAll('.title').forEach(node => {        
     node.addEventListener("click", () => {
         const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
-        log(id)
         window.open(`/container/${id}`, '_blank')
         
     })    
@@ -56,7 +51,7 @@ document.querySelectorAll('.titleTr').forEach(node => {
 document.querySelector('#add-containers-from-table')
 .addEventListener('change', async (e) => {
   if (!e.target.files.length) { return }
-  if (e.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") { 
+  if ((e.target.files[0].type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") && (e.target.files[0].type !== "application/vnd.ms-excel")) { 
     log('WRONG TYPE')
     window.alert('WRONG TYPE')
     return } 
