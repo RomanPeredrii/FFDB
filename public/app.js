@@ -1,5 +1,26 @@
 const log = console.log
 
+document.addEventListener('DOMContentLoaded', () => {
+  let elems = document.querySelectorAll('.dropdown-trigger')
+  let instances = M.Dropdown.init(elems,  { alignment:'left',
+                                            autoTrigger:		true,
+                                            constrainWidth:	true,
+                                            container:	null,
+                                            coverTrigger:	true,	
+                                            closeOnClick:	true,	
+                                            hover:	false,
+                                            inDuration:	150,
+                                            outDuration: 250,
+                                            })
+})
+
+  
+document.querySelector('#add').addEventListener(node => {
+  let instance = M.Dropdown.getInstance(node);
+  instance.open();
+})
+
+
 
 document.querySelectorAll('.editButton').forEach(node => {    
     node.addEventListener("click", async () => {

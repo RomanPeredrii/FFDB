@@ -1,0 +1,22 @@
+!!!!! NAHUI "handlebars" 
+!!!!! FOREVER "pug" 
+
+but dinamic generation with js is beter solution
+
+MAIN PAGE
+    - autorization
+    - instruction
+NAVBAR
+    ---------------------------- icons // done but .......
+    ---------------------------- allways on top // done!!!
+    - add drop list for add
+CONTAINERS
+    - local nav
+    - choice viewed table fields
+    - choice planing containers
+    - sorting
+
+ADD COMENTS IN CODE!!!!!    
+
+MONGO 
+    - add date     

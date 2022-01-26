@@ -93,7 +93,7 @@ data.map((record) => {
     })
     data = data.concat(newData)
     data.forEach(async (record) => {        
-        if (record && record.number) {
+        if (record && record.number) { log(record)
             try {
                 await Container.findOneAndUpdate(
                     {
