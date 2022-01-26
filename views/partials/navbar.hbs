@@ -9,27 +9,19 @@
         <li title="on main page"><a href="/"><i class="material-icons">pan_tool</i></a></li>
         {{/if}}
         {{#if isAdd}}
-        <li class="active" title="add container" id='add'><a class="dropdown-trigger" href="#" data-target='dropdown1'><i class="large material-icons">add</i></a></li>
-        {{!-- <li title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li> --}}
-        
-        {{else}}
-        <li title="add container"><a class="dropdown-trigger" href="#" data-target='dropdown1'><i class="large material-icons">add</i></a></li>
-        {{!-- <li title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li> --}}
-
-
-              <!-- Dropdown Trigger -->
-        {{!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> --}}
-
-        <!-- Dropdown Structure -->
+        <li class="active" title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li>
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="/add"><i class="material-icons">edit</i>manualy</a></li>
           <li><a href=""><input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data"></a>    
           <i class="material-icons">file_download</i>xls/xlsx</a></li>
         </ul>
-        
-
-
-
+        {{else}}
+        <li title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="/add"><i class="material-icons">edit</i>manualy</a></li>
+          <li><a href=""><input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data"></a>    
+          <i class="material-icons">file_download</i>xls/xlsx</a></li>
+        </ul>
         {{/if}}
         {{#if isContainers}} 
         <li class="active" title="to containers"><a href="/containers"><i class="material-icons">view_module</i></a></li>

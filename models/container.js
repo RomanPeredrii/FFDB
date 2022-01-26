@@ -42,7 +42,7 @@ const container = new Schema ({
     cargo: {
         type: String
     },
-    coments: {
+    comments: {
         type: String
     }
 })

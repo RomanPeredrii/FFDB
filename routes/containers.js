@@ -16,7 +16,7 @@ log(dateTime());
 router.get('/', async (req, res) => {
 /******* get all containers here *******/  log('here containers')
     try {
-        const containers = await Container.find()
+        const containers = await Container.find().sort({vessel: 1})
         res.render('containers', {
         title: 'Containers',
         isContainers: true,
@@ -32,7 +32,7 @@ router.post('/edit', async (req, res) => {
     const {id} = req.body
     delete req.body.id
     try {
-        await Container.findOneAndUpdate(id, req.body)    
+        log(await Container.findOne({id: id}))
         res.redirect('/containers')
     
     } catch (error) {
@@ -59,7 +59,7 @@ router.post('/add-many', upload.single('file'), async (req, res) => {
         [`FD`] : `FD`,
         [`weight`] : `weight`,
         [`cargo`] : `cargo`,
-        [`coments`] : `coments`,
+        [`comments`] : `comments`,
         [`number`] : `number`,
         [`client`] : `client`,
         [`size`] : `size`
@@ -113,7 +113,7 @@ data.map((record) => {
                         driver : record.driver,
                         weight : record.weight,
                         cargo : record.cargo,
-                        coments : record.coments
+                        comments : record.comments
                     }, 
                     {
                         new: true,
