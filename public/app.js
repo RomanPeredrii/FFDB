@@ -10,11 +10,11 @@ document.querySelectorAll('.editButton').forEach(node => {
 
 document.querySelectorAll('.deleteButton').forEach(node => {    
     node.addEventListener("click", async () => {
-        const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
-        const fetchData = {
+      const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()
+      await fetch(`/container/${id}/delete`, {
         method: 'DELETE', 
-        }
-      await fetch(`/container/${id}/delete`, fetchData) 
+        }) 
+      window.location.reload();
     })
 })    
 
@@ -29,23 +29,24 @@ document.querySelectorAll('.title').forEach(node => {
 /*************** AFTER **********/
 
 
-// document.querySelector('.addToActualPlan').addEventListener('click', async () => {
-//     log('click')
-//     const data = [] 
-//     document.querySelectorAll('.planing input:checked').forEach(async (node) => {
-//         log('node', node.value.slice(0,node.value.length-1))
-//         data.push(node.value.slice(0,node.value.length-1))
+document.querySelector('.addToActualPlan').addEventListener('click', async () => {
+    log('click')
+    const data = [] 
+    document.querySelectorAll('.planing input:checked').forEach(async (node) => {
+        log('node', node.value.slice(0,node.value.length-1))
+        data.push(node.value.slice(0,node.value.length-1))
 
-//     })
-//     log(JSON.stringify(data.toString()))
-//     const dataForFetch = {
-//         method: 'POST', 
-//         body: JSON.stringify(data)
-//       }
+    })
+    log(JSON.stringify(data.toString()))
 
-//       log(dataForFetch.body)
-//     await fetch('/makePlan', dataForFetch) 
-// })
+    // await fetch('/makePlan', dataForFetch {
+      // method: 'POST', 
+      // body: JSON.stringify(data)
+
+    // })
+})
+
+
 
 document.querySelector('#add-containers-from-table')
 .addEventListener('change', async (e) => {

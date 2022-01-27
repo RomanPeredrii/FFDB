@@ -1,41 +1,54 @@
 <div class="navbar-fixed">  
   <nav>
     <div class="nav-wrapper">
-      <a href="" class="brand-logo"><i class="material-icons">cloud</i>Containers DB</a>
+      <a href="/containers" class="brand-logo"><i class="material-icons">cloud</i>Containers DB</a>
       <ul class="right hide-on-med-and-down">
         {{#if isHome}}
-        <li class="active" title="on main page"><a href="/"><i class="material-icons">pan_tool</i></a></li>
+        <li class="active" title="to main page">
+          <a href="/">
+            <i class="material-icons">pan_tool</i>
+          </a>
+        </li>
         {{else}}
-        <li title="on main page"><a href="/"><i class="material-icons">pan_tool</i></a></li>
+        <li title="to main page">
+          <a href="/">
+            <i class="material-icons">pan_tool</i>
+          </a>
+        </li>
         {{/if}}
         {{#if isAdd}}
-        <li class="active" title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/add"><i class="material-icons">edit</i>manualy</a></li>
-          <li><a href=""><input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data"></a>    
-          <i class="material-icons">file_download</i>xls/xlsx</a></li>
-        </ul>
+        <li class="active" title="add container manualy">
+          <a href="/add">
+            <i class="large material-icons" "dropdown-trigger">add</i>
+          </a>
+        </li>
         {{else}}
-        <li title="add container"><a href="/add"><i class="large material-icons" "dropdown-trigger">add</i></a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="/add"><i class="material-icons">edit</i>manualy</a></li>
-          <li><a href=""><input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data"></a>    
-          <i class="material-icons">file_download</i>xls/xlsx</a></li>
-        </ul>
+        <li title="add container manualy">
+          <a href="/add">
+            <i class="large material-icons" "dropdown-trigger">add</i>
+          </a>
+        </li>
         {{/if}}
         {{#if isContainers}} 
-        <li class="active" title="to containers"><a href="/containers"><i class="material-icons">view_module</i></a></li>
+        <li class="active" title="to containers">
+          <a href="/containers">
+            <i class="material-icons">view_module</i>
+          </a>
+        </li>
         {{else}}
-        <li title="to containers"><a href="/containers"><i class="material-icons">view_module</i></a></li>
-        {{/if}}
-        {{!-- <li><a href=""><i class="material-icons">more_vert</i></a></li> --}}
         <li title="to containers">
+          <a href="/containers">
+            <i class="material-icons">view_module</i>
+          </a>
+        </li>
+        {{/if}}
+        <li title="add from *.xlsx, *.xls file">
           <form action="/add-many" enctype="multipart/form-data">          
             <label for="add-containers-from-table">
               <input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data">
                 <a type="file" class="">
                   <i class="material-icons">file_download</i>
-              </a>
+                </a>
             </label>
           </form>
         </li>
@@ -43,26 +56,3 @@
     </div>
   </nav>  
 </div>
-
-{{!-- <nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo">Containers</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      {{#if isHome}}       
-      <li class="active"><a href="/">Main</a></li>
-      {{else}}
-      <li><a href="/">Main</a></li>
-      {{/if}}
-      {{#if isContainers}}  
-      <li class="active"><a href="/containers">Containers</a></li>
-      {{else}}
-      <li><a href="/containers">Containers</a></li>
-      {{/if}}
-      {{#if isAdd}}
-      <li class="active" title="add container"><a href="/add">Add container</a></li>
-      {{else}}
-      <li><a href="/add">Add container</a></li>
-      {{/if}}
-    </ul>
-  </div>
-</nav> --}}
