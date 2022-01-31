@@ -3,6 +3,12 @@
     <div class="nav-wrapper">
       <a href="/containers" class="brand-logo"><i class="material-icons">cloud</i>Containers DB</a>
       <ul class="right hide-on-med-and-down">
+{{!-- 
+<a class="addToActualPlan"><i class="material-icons">note</i></a>
+
+ --}}
+
+
         {{#if isHome}}
         <li class="active" title="to main page">
           <a href="/">
@@ -30,6 +36,21 @@
         </li>
         {{/if}}
         {{#if isContainers}} 
+
+        {{#if isPlan}}
+        <li class="active" title="make daily prospect">
+          <a class="addToActualPlan">
+            <i class="material-icons">note</i>
+          </a>
+        </li>  
+        {{else}}
+        <li title="make daily prospect">
+          <a class="addToActualPlan">
+            <i class="material-icons">note</i>
+          </a>
+        </li>  
+        {{/if}}
+        
         <li class="active" title="to containers">
           <a href="/containers">
             <i class="material-icons">view_module</i>

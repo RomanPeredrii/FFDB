@@ -1,7 +1,7 @@
 const log = console.log
 const {Router} = require('express')
-const Container = require('../models/container')
 const router = Router()
+const Container = require('../models/container')
 const path = require('path')
 const moment = require('moment');
 const multer  = require('multer')
@@ -82,7 +82,7 @@ data.map((record) => {
             record.number.trim().split(' ').map((number) => {                               
                 record.number = number
 
-                rawData.push(Object.entries(record)) /** need to try Object.defineProperty(o, nk, Object.getOwnPropertyDescriptor(o, ok)); delete o[ok] **/
+                rawData.push(Object.entries(record)) /** need to try Object.defineProperty(oldObj, newObjKey, Object.getOwnPropertyDescriptor(oldObj, oldObjKey)); delete oldObj[oldObjKey] **/
             
             })   
             data.splice(data.indexOf(record),1, 0)

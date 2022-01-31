@@ -1,14 +1,5 @@
-{{#if containers.length }}
-    
+{{!-- {{#if containers.length }}    
         <table class = "striped highlight centered">
-            {{!-- <thead>
-            <tr class = "tHead">
-                <th >Number</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Edit</th>
-                </tr>
-            </thead> --}}
     {{#each containers}}
             <tbody>
             <tr>
@@ -25,20 +16,20 @@
                 <td class = "driver">{{driver}}</td>
                 <td class = "weight">{{weight}}</td>
                 <td class = "cargo">{{cargo}}</td>
-                <td class = "comments">{{comments}}</td>
-                <td class = "planing"> 
+                <td class = "comments">{{comments}}</td> --}}
+                {{!-- <td class = "planing"> 
                     <label>
                         <input type="checkbox" class="plan" name = "planed" value={{id}}/>                        
                         <span></span>
                     </label>
-                </td>                
-                <td class = "editButton"> 
+                </td>                 --}}
+                {{!-- <td class = "editButton"> 
                     <i class="material-icons">edit</i>
-                </td>
-                <td class = "deleteButton"> 
+                </td> --}}
+                {{!-- <td class = "deleteButton"> 
                     <i class="material-icons">delete_forever</i>
-                </td>
-                <td class = "status" hidden>{{id}}</td> 
+                </td> --}}
+                {{!-- <td class = "id" hidden>{{id}}</td> 
             </tr>
             </tbody>
         
@@ -46,7 +37,6 @@
         </table>
 {{else}}
 <p>Nothing there</p>
-{{/if}}
+{{/if}} --}}
 
-
-
+<h1>Nothing there</h1>

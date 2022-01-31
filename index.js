@@ -5,15 +5,13 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const express = require('express')
 const app = express()
 const path = require('path')
+const mongoose = require('mongoose')
 const addRoutes = require('./routes/add')
 const containersRoutes = require('./routes/containers')
 const homeRoutes = require('./routes/home')
 const containerRoutes = require('./routes/container')
-const makePlan = require('./routes/makePlan')
-const mongoose = require('mongoose')
+const planningRoutes = require('./routes/planning')
 
-
-app.use(express.static('public'))
 
 
 const hbs = expHBS.create({
@@ -27,19 +25,18 @@ const PORT = process.env.PORT || 3000
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
+app.use(express.static('public'))
 app.set('views', 'views')
 app.use(express.json({
     type: ['application/json', 'text/plain']
 }))
-app.use(express.static('public'))
+
 app.use(express.urlencoded({extended: true}))
 app.use('/add', addRoutes)
 app.use('/containers', containersRoutes)
 app.use('/', homeRoutes)
 app.use('/container', containerRoutes)
-app.use('/makePlan', makePlan)
-
-
+app.use('/planning', planningRoutes)
 
 const start = async () => {
     try {
