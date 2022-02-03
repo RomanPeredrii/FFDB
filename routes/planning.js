@@ -6,31 +6,25 @@ const Container = require('../models/container')
 
 router.post('/', async (req, res) => {
 
+    log(!req.body.length)
 
-    // res.redirect('/')
-    // if (!req.body.length) { return}
-    // log(!req.body.length)
-    // else {
+    if (!req.body.length) { return}    
+    else {
         try {
-        // log( await Container.find({_id: req.body}))  
-        
-        // const containers = await Container.find({_id: req.body})
-        // log(containers)
-        // res.render('planning',  {
-        //     title: 'Planning',
-        //     isPlan: true,
-        //     containers
-        // })
+        const containers = await Container.find({_id: req.body})
+        log(containers)
+        res.render('planning',  {
+            title: 'Planning',
+            isPlan: true,
+            containers
+        })
 
-            
-
-                // res.redirect('/makePlan')
             
             } catch (error) {
                 log('EDIT CONTAINER ERROR', error)   
             }  
 
-    // }
+    }
         
 })
 
