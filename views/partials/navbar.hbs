@@ -6,13 +6,13 @@
 
         {{#if isHome}}
         <li class="active" title="to main page">
-          <a href="/planning">
+          <a href="/">
             <i class="material-icons">pan_tool</i>
           </a>
         </li>
         {{else}}
         <li title="to main page">
-          <a href="/planning">
+          <a href="/">
             <i class="material-icons">pan_tool</i>
           </a>
         </li>
@@ -31,6 +31,8 @@
         </li>
         {{/if}}
         {{#if isContainers}} 
+        {{!-- <input type="text" class="datepicker" id="dateFrom">
+        <input type="text" class="datepicker" id="dateTo"> --}}
 
         {{#if isPlan}}
         <li class="active" title="make daily prospect">

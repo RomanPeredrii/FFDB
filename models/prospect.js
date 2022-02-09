@@ -1,14 +1,18 @@
 const {Schema, model} = require('mongoose')
 const prospect = new Schema ({
-    date: Date,
-    containers: {
-        required: true,
-        containerId: [{
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    containers: [
+        {
+        containerId: {
             type: Schema.Types.ObjectId,
             ref: 'Container',
-            required: true  
-        }]
-    }
+            required: true
+            }
+        }
+    ]
 })
 
 module.exports = model('Prospect', prospect)
