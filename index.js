@@ -13,7 +13,9 @@ const homeRoutes = require('./routes/home')
 const containerRoutes = require('./routes/container')
 const planningRoutes = require('./routes/planning')
 const authRoutes = require('./routes/auth')
-
+const {DB} = require('./data.js')
+const checkUser = require('./controllers/users')
+const { findById } = require('./models/container')
 
 
 const hbs = expHBS.create({
@@ -38,6 +40,17 @@ app.use(session({
     saveUninitialized: false
 }))
 
+app.use(async (req, res, next)=> {
+    try {
+        const user = await findById('6205354ce210f5a486e4e1d8')
+        req.user = user
+        next()        
+    } catch (error) {
+        log('GET USER ERROR', error)
+    }
+
+})
+
 app.use(express.urlencoded({extended: true}))
 app.use('/add', addRoutes)
 app.use('/containers', containersRoutes)
@@ -48,18 +61,15 @@ app.use('/auth', authRoutes)
 
 const start = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://ffdb:Alpha666Alpha@cluster0.aumhk.mongodb.net/FFDB?retryWrites=true&w=majority`,
-        {useNewUrlParser: true})
-
+        await mongoose.connect(`${DB}`, {useNewUrlParser: true})
         app.listen(PORT, () => {
         log(`Server is running on port ${PORT}`)
         })
-
+        await checkUser()
     }
     catch (err) {
         log("START ERROR",err)
     }
-
 }
 
 start()

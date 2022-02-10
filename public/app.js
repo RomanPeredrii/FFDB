@@ -56,9 +56,7 @@ document.querySelector('#add-containers-from-table')
   } 
 })
 
-
 /*************** AFTER **********/
-
 
 document.querySelector('.addToActualPlan').addEventListener('click', async () => {
   log('click')
@@ -70,10 +68,12 @@ document.querySelector('.addToActualPlan').addEventListener('click', async () =>
   })
   log(JSON.stringify(data.toString()))
 
-  await fetch('/planning', {
+  const response = await fetch('/planning', {
     method: 'POST', 
+    redirect: 'manual',
     body: JSON.stringify(data)
   })
-  
+
+    
 })
 

@@ -1,16 +1,9 @@
-# !!!!! NAHUI "handlebars" 
-# !!!!! FOREVER "pug" 
-
-# but dinamic generation with js is beter solution
+# !!! dinamic generation with js is beter solution
 
 # MAIN PAGE
 #     - autorization
 #     - instruction
-# NAVBAR
-#     ---------------------------- icons // done!!!
-#     ---------------------------- allways on top // done!!!
 # CONTAINERS
-#     - local nav
 #     - choice viewed table fields
 #     - choice planing containers
 #     - sorting
@@ -21,5 +14,8 @@
 # ADD COMENTS IN CODE!!!!!    
 
 # MONGO 
-#     - add date
+#     - add date 
+#     - Users
+#     - Drivers
+#     - Daily prospect
   

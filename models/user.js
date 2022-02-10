@@ -4,11 +4,11 @@ const user = new Schema ({
         type: String,
         required: true
     },
-    email: {
+    password: {
         type: String,
         required: false /** temp **/
     },
-    password: {
+    email: {
         type: String,
         required: false /** temp **/
     },
