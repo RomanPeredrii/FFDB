@@ -25,7 +25,8 @@ router.get('/:id/edit', async (req, res) => {
         } else {
             res.render('editContainer', {
                     title: container.number,
-                    isContainers: true,
+                    IsEdit: true,
+                    place: 'Edit container information',
                     container
                 })        
             }

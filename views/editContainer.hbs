@@ -1,89 +1,85 @@
-<h1>Edit container information</h1>
 <form action="/containers/edit" method="POST">
-    <div class="input-field">
-        <input id="number" name="number" type="text" readonly required value="{{container.number}}">
-        <label for="number">Container number </label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
-        </div>
+   <div class="input-field">
+      <input id="number" name="number" type="text" readonly required value="{{container.number}}">
+      <label for="number">Container number </label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+      </div>
 
-    <div class="input-field">
-       <input id="size" name="size" type="text" pattern = "20|40|45" class="validate" required value="{{container.size}}"> 
-       <label for="size">size 20/40/45</label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
+   <div class="input-field">
+      <input id="size" name="size" type="text" pattern = "20|40|45" class="validate" required value="{{container.size}}"> 
+      <label for="size">size 20/40/45</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>
 
-    <div class="input-field">
-       <input id="status" name="status" type="text" pattern = "IMP|EXP" class="validate" value="{{container.status}}">
-       <label for="status">status IMP/EXP</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
+   <div class="input-field">
+      <input id="status" name="status" type="text" pattern = "IMP|EXP" class="validate" value="{{container.status}}">
+      <label for="status">status IMP/EXP</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>
 
-    <div class="input-field">
-       <input id="client" name="client" type="text" value="{{container.client}}">
-       <label for="client">Client</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
+   <div class="input-field">
+      <input id="client" name="client" type="text" value="{{container.client}}">
+      <label for="client">Client</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>
 
-    <div class="input-field">
-       <input id="POL" name="POL" type="text" value="{{container.POL}}">
-       <label for="POL">Port Of Loading</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
+   <div class="input-field">
+      <input id="POL" name="POL" type="text" value="{{container.POL}}">
+      <label for="POL">Port Of Loading</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>
 
-    <div class="input-field">
-       <input id="POD" name="POD" type="text" value="{{container.POD}}">
-       <label for="POD">Port Of Distanation</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>    
+   <div class="input-field">
+      <input id="POD" name="POD" type="text" value="{{container.POD}}">
+      <label for="POD">Port Of Distanation</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>    
 
-    <div class="input-field">
-       <input id="FD" name="FD" type="text" value="{{container.FD}}">
-       <label for="FD">Final Distanation</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div> 
+   <div class="input-field">
+      <input id="FD" name="FD" type="text" value="{{container.FD}}">
+      <label for="FD">Final Distanation</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div> 
 
-    <div class="input-field">
-       <input id="line" name="line" type="text" value="{{container.line}}">
-       <label for="line">Containers Line</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
+   <div class="input-field">
+      <input id="line" name="line" type="text" value="{{container.line}}">
+      <label for="line">Containers Line</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>
 
-    <div class="input-field">
-       <input id="vessel" name="vessel" type="text" value="{{container.vessel}}">
-       <label for="vessel">Vessel</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>    
+   <div class="input-field">
+      <input id="vessel" name="vessel" type="text" value="{{container.vessel}}">
+      <label for="vessel">Vessel</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>    
 
-    <div class="input-field">
-       <input id="weight" name="weight" type="text" value="{{container.weight}}">
-       <label for="weigth">Weight</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>    
+   <div class="input-field">
+      <input id="weight" name="weight" type="text" value="{{container.weight}}">
+      <label for="weigth">Weight</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>    
 
-    <div class="input-field">
-       <input id="driver" name="driver" type="text" value="{{container.driver}}">
-       <label for="driver">Diver</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div> 
-  
-    <div class="input-field">
-       <input id="cargo" name="cargo" type="text" value="{{container.cargo}}">
-       <label for="cargo">Cargo</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>        
+   <div class="input-field">
+      <input id="driver" name="driver" type="text" value="{{container.driver}}">
+      <label for="driver">Diver</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div> 
 
-    <div class="input-field">
-       <input id="comments" name="comments" type="text" value="{{container.comments}}">
-       <label for="comments">Comments</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>  
+   <div class="input-field">
+      <input id="cargo" name="cargo" type="text" value="{{container.cargo}}">
+      <label for="cargo">Cargo</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>        
 
-
-
-    <input id="id" name="id" type="hidden" value="{{container.id}}">
-
-    <button class="btn btn-primary">Save changes</button>
-
+   <div class="input-field">
+      <input id="comments" name="comments" type="text" value="{{container.comments}}">
+      <label for="comments">Comments</label>
+      <span class="helper-text" data-error="wrong" data-success="right"></span>
+   </div>  
+   <input id="id" name="id" type="hidden" value="{{container.id}}">
+   <div class="row center-align">
+      <button class="btn btn-primary">Save changes</button>
+   </div>
 </form>
 
 

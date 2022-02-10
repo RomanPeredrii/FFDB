@@ -3,18 +3,48 @@
 }
 
 .container {
+    margin-top: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1 0 auto;
 }
 
-/* .container h1 {
+.container h1, #add {
     margin-bottom: 2rem;
-} */
+}
 
 .plan {
     opacity: 100;
 }
 
+html {
+height: 100%;   
 
+}
+body {
+height: 100%;
+display: flex;
+flex-direction: column;
+}
+
+footer {
+flex: 0 0 auto;
+}
+
+#auth {
+    margin-top: 8rem;
+}
+
+table {
+    color: black;
+}
+
+.input-date {
+    width: 8rem;    
+}
+
+#dateFrom, #dateTo {
+    padding: 0 1.5rem 0 1.5rem;
+}

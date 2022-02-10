@@ -8,8 +8,10 @@ const Container = require('../models/container')
 router.get('/', (req, res) => {
 /****** render Add page *******/ log('here add')
     res.render('add', {
-        title: 'Add',
-        isAdd: true
+        title: 'Add manually',
+        isAdd: true,
+        place: 'Add container information'
+
     })
 })
 

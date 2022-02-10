@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
         const containers = await Container.find().sort({vessel: 1})
         res.render('containers', {
         title: 'Containers',
+        place: 'Containers DB',
         isContainers: true,
         containers
     })        

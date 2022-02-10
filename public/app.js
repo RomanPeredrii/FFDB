@@ -1,5 +1,10 @@
 const log = console.log
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.datepicker');
+  var instances = M.Datepicker.init(elems);
+});
+
 document.querySelectorAll('.editButton').forEach(node => {    
     node.addEventListener("click", async () => {
       const id = node.parentNode.textContent.trim().split("\n")[node.parentNode.textContent.trim().split("\n").length - 1].trim()

@@ -5,8 +5,10 @@ const router = Router()
 router.get('/', (req, res) => {
 
     res.render('index', {
-        title: 'Main',
-        isHome: true
+        title: 'Login',
+        isHome: true,
+        place: "Sign in please"
+
     })
 });
 
