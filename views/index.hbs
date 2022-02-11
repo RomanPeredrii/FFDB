@@ -1,11 +1,11 @@
 <div id="auth">
-    <form action="/auth" method="POST">
+    <form action="/auth/login" method="POST">
         <div class="input-field col s12">
-            <input id="login" name="login" type="text" class="validate" required>
+            <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
             <label for="login">Login</label>
         </div>
         <div class="input-field col s12">
-          <input id="password" type="password" name="password" class="validate" required>
+          <input id="password" type="password" name="password" class="validate" autocomplete="off" required>
           <label for="password">Password</label>
         </div> 
         <div class="row center-align">
