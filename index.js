@@ -5,6 +5,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const express = require('express')
 const app = express()
 const session = require("express-session")
+const MongoStore = require('connect-mongodb-session')(session)
 const path = require('path')
 const mongoose = require('mongoose')
 const User = require('./models/user')
@@ -27,6 +28,10 @@ const hbs = expHBS.create({
 })
 
 const PORT = process.env.PORT || 3000
+const store = new MongoStore({
+    collection: 'sessions',
+    uri: DB
+})
 
 
 app.engine('hbs', hbs.engine)
@@ -36,23 +41,13 @@ app.use(express.json({
     type: ['application/json', 'text/plain']
 }))
 
-app.use(async (req, res, next)=> {
-    try {
-        const user = await User.findById('6205354ce210f5a486e4e1d8')
-        req.user = user
-        next()        
-    } catch (error) {
-        log('GET USER ERROR', error)
-    }
-
-})
-
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended: true}))
 app.use(session({
     secret: "some secret",
     resave: false, 
-    saveUninitialized: false
+    saveUninitialized: false,
+    store
 }))
 
 app.use(varMid)
@@ -70,7 +65,7 @@ const start = async () => {
         app.listen(PORT, () => {
         log(`Server is running on port ${PORT}`)
         })
-        await checkUser()
+        // await checkUser()
     }
     catch (err) {
         log("START ERROR",err)
