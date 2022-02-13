@@ -1,6 +1,7 @@
 const log = console.log
 const {Router} = require('express')
 const router = Router()
+const auth = require('../middleware/auth')
 // const mongoose = require('mongoose')
 // const Container = require('../models/container')
 // const Prospect = require('../models/prospect')

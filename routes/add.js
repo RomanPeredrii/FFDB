@@ -1,11 +1,11 @@
 const log = console.log
-
 const {Router} = require('express')
 const router = Router()
 const Container = require('../models/container')
+const auth = require('../middleware/auth')
 
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
 /****** render Add page *******/ log('here add')
     res.render('add', {
         title: 'Add manually',
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 /****** add new container *******/ log('add new container')
 const container = new Container({
     number: req.body.number, 

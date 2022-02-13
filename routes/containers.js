@@ -8,12 +8,12 @@ const multer  = require('multer')
 const upload = multer({ dest: './buffer' })
 const xlsx = require('xlsx')
 const fs = require('fs')
-
+const auth = require('../middleware/auth')
 
 const dateTime = () => { return (moment().locale('us').format('MMMM Do YYYY, hh:mm:ss a')) }
 log(dateTime());
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
 /******* get all containers here *******/  log('here containers')
     try {
         const containers = await Container.find().sort({vessel: 1})
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/edit', async (req, res) => {
+router.post('/edit', auth, async (req, res) => {
     /******* get all containers here *******/    log('here container edit & containers page update', req.body)
     const {id} = req.body
     delete req.body.id
@@ -41,7 +41,7 @@ router.post('/edit', async (req, res) => {
     }
 })
 
-router.post('/add-many', upload.single('file'), async (req, res) => {
+router.post('/add-many', auth, upload.single('file'), async (req, res) => {
     const file = path.join(__dirname, '..', req.file.path)
     const wb = xlsx.readFile(file)
     const ws = wb.Sheets[wb.SheetNames[0]];
