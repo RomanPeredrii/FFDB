@@ -8,7 +8,7 @@ router.get('/', auth, async (req, res) => {
     log('Admin Page', req.session)
     res.render('admin', {
         user: req.session.user.name,
-        place: 'ADD NEW USER',
+        place: 'USERS',
         title: 'Admin Page',
         isAdmin: true
     })

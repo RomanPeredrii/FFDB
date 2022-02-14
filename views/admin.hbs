@@ -1,33 +1,102 @@
-<form action="/auth/add-new" method="POST">
-    <div class="input-field">
-        <input id="name" name="name" type="text" class="validate" autocomplete="off">
-        <label for="name">Name</label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+             <li class="tab col s6" title="change existing user">
+                <a class="active" href="#change-existing">
+                    <i class="medium material-icons dropdown-trigger">person</i>
+                </a>
+            </li>
+            <li class="tab col s6" title="add new user">
+                <a href="#add-new">
+                    <i class="medium material-icons dropdown-trigger">person_add</i>
+                </a>
+            </li>           
+        </ul>
     </div>
-    <div class="input-field">
-        <input id="email" name="email" type="text" class="validate" autocomplete="off" required>
-        <label for="email">E-mail</label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div> 
-    <div class="input-field">
-        <input id="department" name="department" type="text" class="validate" autocomplete="off" required>
-        <label for="department">Department</label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
+    <div id="change-existing" class="col s12">
+        <form action="/auth/add-new" method="POST">
+            <div class="input-field">
+                <input id="name" name="name" type="text" class="validate" class="autocomplete">
+                <label for="name">Name</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field">
+                <input id="email" name="email" type="text" class="validate" autocomplete="off" required>
+                <label for="email">E-mail</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div> 
+            <div class="input-field">
+                <input id="department" name="department" type="text" class="validate" autocomplete="off" required>
+                <label for="department">Department</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field">
+                <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
+                <label for="login">Login</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div> 
+            <div class="input-field">
+                <input id="password" name="password" type="text" class="validate" autocomplete="off" required> 
+                <label for="password">Password</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field">
+                <input id="confirmPassword" name="confirmPassword" type="text" class="validate" autocomplete="off" required> 
+                <label for="confirmPassword">Confirm Password</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="row center-align">
+                <button class="btn btn-primary" type="submit">SAVE CHANGES</button>
+            </div>
+        </form>
     </div>
-        <div class="input-field">
-        <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
-        <label for="login">Login</label>
-        <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div> 
-    <div class="input-field">
-       <input id="password" name="password" type="text" class="validate" autocomplete="off" required> 
-       <label for="password">Password</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
+    <div id="add-new" class="col s12">
+        <form action="/auth/change-existing" method="POST">
+            <div class="input-field">
+                <input id="name" name="name" type="text" class="validate" autocomplete="off">
+                <label for="name">Name</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field">
+                <input id="email" name="email" type="text" class="validate" autocomplete="off" required>
+                <label for="email">E-mail</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div> 
+            <div class="input-field">
+                <input id="department" name="department" type="text" class="validate" autocomplete="off" required>
+                <label for="department">Department</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+                <div class="input-field">
+                <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
+                <label for="login">Login</label>
+                <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div> 
+            <div class="input-field">
+            <input id="password" name="password" type="text" class="validate" autocomplete="off" required> 
+            <label for="password">Password</label>
+            <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="input-field">
+            <input id="confirmPassword" name="confirmPassword" type="text" class="validate" autocomplete="off" required> 
+            <label for="password">Confirm Password</label>
+            <span class="helper-text" data-error="wrong" data-success="right"></span>
+            </div>
+            <div class="row center-align">
+                <button class="btn btn-primary" type="submit">ADD NEW</button>
+            </div>
+        </form>
     </div>
-    <div class="input-field">
-       <input id="confirmPassword" name="confirmPassword" type="text" class="validate" autocomplete="off" required> 
-       <label for="password">Confirm Password</label>
-       <span class="helper-text" data-error="wrong" data-success="right"></span>
-    </div>
-    <button class="btn btn-primary" type="submit">ADD NEW</button>
-</form>
+</div>
+
+{{!-- <li class="active" title="add new user">
+    <a href="#!">
+        <i class="large material-icons dropdown-trigger">person_add</i>
+    </a>
+</li>
+<li title="change existing user">
+    <a href="#!">
+        <i class="large material-icons dropdown-trigger">person</i>
+    </a>
+</li> --}}
+

@@ -1,5 +1,12 @@
 const log = console.log
 
+M.Tabs.init(document.querySelectorAll('.tabs'))
+
+document.addEventListener('DOMContentLoaded', function() {
+  M.Autocomplete.init(document.querySelectorAll('.autocomplete'), {data: { }})
+ });
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.datepicker');
   var instances = M.Datepicker.init(elems);
@@ -76,4 +83,5 @@ document.querySelector('.addToActualPlan').addEventListener('click', async () =>
 
     
 })
+
 
