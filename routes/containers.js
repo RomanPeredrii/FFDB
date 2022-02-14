@@ -14,10 +14,11 @@ const dateTime = () => { return (moment().locale('us').format('MMMM Do YYYY, hh:
 log(dateTime());
 
 router.get('/', auth, async (req, res) => {
-/******* get all containers here *******/  log('here containers')
+/******* get all containers here *******/  log('here containers', req.session)
     try {
         const containers = await Container.find().sort({vessel: 1})
         res.render('containers', {
+        user: req.session.user.name,
         title: 'Containers',
         place: 'Containers DB',
         isContainers: true,

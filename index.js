@@ -15,6 +15,7 @@ const homeRoutes = require('./routes/home')
 const containerRoutes = require('./routes/container')
 const planningRoutes = require('./routes/planning')
 const authRoutes = require('./routes/auth')
+const adminRoutes = require('./routes/admin')
 const {DB} = require('./data.js')
 const checkUser = require('./controllers/users')
 const varMid = require('./middleware/variables')
@@ -58,6 +59,7 @@ app.use('/', homeRoutes)
 app.use('/container', containerRoutes)
 app.use('/planning', planningRoutes)
 app.use('/auth', authRoutes)
+app.use('/admin', adminRoutes)
 
 const start = async () => {
     try {

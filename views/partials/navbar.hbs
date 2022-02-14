@@ -1,56 +1,23 @@
 <div class="navbar-fixed">  
   <nav>
     <div class="nav-wrapper">
-      <li class="brand-logo"><i class="material-icons">cloud</i>{{place}}</li>
+      <li class="brand-logo"><i class="material-icons">cloud</i>{{place}}</li>      
       <ul class="right hide-on-med-and-down">
         {{#if isAdd}}
         {{>navButtonsForAdd}}
+        {{>currentUser}}
         {{/if}}
         {{#if isContainers}} 
         {{>navButtonsForContainers}}
+        {{>currentUser}}
         {{/if}}
         {{#if IsEdit}}
         {{>navButtonsForEdit}}
-        {{!-- {{#if isPlan}}
-        <li class="active" title="to main page">
-          <a href="/">
-            <i class="material-icons">pan_tool</i>
-          </a>
-        </li>
-        <li class="active" title="make daily prospect">
-          <a class="addToActualPlan">
-            <i class="material-icons">note</i>
-          </a>
-        </li>  
-        <li title="add from *.xlsx, *.xls file">
-          <form action="/add-many" enctype="multipart/form-data">          
-            <label for="add-containers-from-table">
-              <input id="add-containers-from-table" type="file" accept=".xlsx, .xls" hidden enctype="multipart/form-data">
-                <a type="file" class="">
-                  <i class="material-icons">file_download</i>
-                </a>
-            </label>
-          </form>
-        </li> --}}
-        {{!-- {{else}}
-        <li title="make daily prospect">
-          <a class="addToActualPlan">
-            <i class="material-icons">note</i>
-          </a>
-        </li>   --}}
-        {{!-- {{/if}} --}}
-        
-        {{!-- <li class="active" title="to containers">
-          <a href="/containers">
-            <i class="material-icons">view_module</i>
-          </a>
-        </li> --}}
-        {{!-- {{else}}
-        <li title="to containers">
-          <a href="/containers">
-            <i class="material-icons">view_module</i>
-          </a>
-        </li> --}}
+        {{>currentUser}}
+        {{/if}}
+        {{#if isAdmin}}
+        {{>navButtonsForAdmin}}
+        {{>currentUser}}
         {{/if}}
       </ul>
     </div>

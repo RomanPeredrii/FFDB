@@ -3,13 +3,12 @@ const {Router} = require('express')
 const router = Router()
 const User = require('../models/user')
 const auth = require('../middleware/auth')
-const { redirect } = require('express/lib/response')
 
 router.post('/login', async (req, res) => {
     try {
         const {login, password} = req.body
         log(login, password)
-        const user = await User.findOne({name: login})
+        const user = await User.findOne({login})
         log(user)
         if (user) {
             if (password===user.password) {
@@ -20,6 +19,10 @@ router.post('/login', async (req, res) => {
                         throw err
                     }
                     log('AUTH', req.session)
+                    if (user.login === 'Admin') { 
+                        log('Admin', req.session)
+                        return res.redirect('/admin')
+                    }
                     res.redirect('/containers')
                 })
             }            

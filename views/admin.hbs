@@ -1,0 +1,33 @@
+<form action="/auth/add-new" method="POST">
+    <div class="input-field">
+        <input id="name" name="name" type="text" class="validate" autocomplete="off">
+        <label for="name">Name</label>
+        <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div>
+    <div class="input-field">
+        <input id="email" name="email" type="text" class="validate" autocomplete="off" required>
+        <label for="email">E-mail</label>
+        <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div> 
+    <div class="input-field">
+        <input id="department" name="department" type="text" class="validate" autocomplete="off" required>
+        <label for="department">Department</label>
+        <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div>
+        <div class="input-field">
+        <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
+        <label for="login">Login</label>
+        <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div> 
+    <div class="input-field">
+       <input id="password" name="password" type="text" class="validate" autocomplete="off" required> 
+       <label for="password">Password</label>
+       <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div>
+    <div class="input-field">
+       <input id="confirmPassword" name="confirmPassword" type="text" class="validate" autocomplete="off" required> 
+       <label for="password">Confirm Password</label>
+       <span class="helper-text" data-error="wrong" data-success="right"></span>
+    </div>
+    <button class="btn btn-primary" type="submit">ADD NEW</button>
+</form>

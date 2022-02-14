@@ -25,6 +25,7 @@ router.get('/:id/edit', auth, async (req, res) => {
             return res.redirect('/containers')
         } else {
             res.render('editContainer', {
+                    user: req.session.user.name,
                     title: container.number,
                     IsEdit: true,
                     place: 'Edit container information',
@@ -42,6 +43,7 @@ router.get('/:id', auth, async (req, res) => {
     try {
         const container = await Container.findById(req.params.id)
     res.render('container', {
+        user: req.session.user.name,
         layout:'empty',
         title: container.number,
         isContainer: true,
