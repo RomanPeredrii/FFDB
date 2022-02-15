@@ -5,19 +5,19 @@
       <ul class="right hide-on-med-and-down">
         {{#if isAdd}}
         {{>navButtonsForAdd}}
-        {{>currentUser}}
+        {{>activeUser}}
         {{/if}}
         {{#if isContainers}} 
         {{>navButtonsForContainers}}
-        {{>currentUser}}
+        {{>activeUser}}
         {{/if}}
         {{#if IsEdit}}
         {{>navButtonsForEdit}}
-        {{>currentUser}}
+        {{>activeUser}}
         {{/if}}
         {{#if isAdmin}}
         {{>navButtonsForAdmin}}
-        {{>currentUser}}
+        {{>activeUser}}
         {{/if}}
       </ul>
     </div>

@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 router.get('/', auth, (req, res) => {
 /****** render Add page *******/ log('here add', req.session.user.name)
     res.render('add', {
-        user: req.session.user.name,
+        activeUser: req.session.user.name,
         title: 'Add manually',
         isAdd: true,
         place: 'Add container information'

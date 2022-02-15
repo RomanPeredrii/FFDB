@@ -18,7 +18,7 @@ router.get('/', auth, async (req, res) => {
     try {
         const containers = await Container.find().sort({vessel: 1})
         res.render('containers', {
-        user: req.session.user.name,
+        activeUser: req.session.user.name,
         title: 'Containers',
         place: 'Containers DB',
         isContainers: true,

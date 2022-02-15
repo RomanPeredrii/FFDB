@@ -2,12 +2,12 @@
     <div class="col m12">
         <ul class="tabs">
             <li class="tab col m4" title="users list">
-                <a class="active" href="#existing-users">
+                <a class="existingUsers" href="#existing-users">
                     <i class="medium material-icons dropdown-trigger">people</i>
                 </a>
             </li>  
-             <li class="tab col m4 disabled" title="change existing user">
-                <a href="#change-existing">
+             <li class="tab col m4 disabled" id="changeUserData" title="change existing user">
+                <a class="changeUserData" href="#change-existing">
                     <i class="medium material-icons dropdown-trigger">person</i>
                 </a>
             </li>
@@ -48,32 +48,32 @@
         <form action="/auth/change-existing" method="POST">
             <div class="input-field ">
                 <input id="name" name="name" type="text" class="validate" class="autocomplete">
-                <label for="name">Name</label>
+                {{!-- <label for="name">Name</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div>
             <div class="input-field">
                 <input id="email" name="email" type="text" class="validate" autocomplete="off" required>
-                <label for="email">E-mail</label>
+                {{!-- <label for="email">E-mail</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div> 
             <div class="input-field">
                 <input id="department" name="department" type="text" class="validate" autocomplete="off" required>
-                <label for="department">Department</label>
+                {{!-- <label for="department">Department</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div>
             <div class="input-field">
                 <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
-                <label for="login">Login</label>
+                {{!-- <label for="login">Login</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div> 
             <div class="input-field">
                 <input id="password" name="password" type="text" class="validate" autocomplete="off" required> 
-                <label for="password">Password</label>
+                {{!-- <label for="password">Password</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div>
             <div class="input-field">
                 <input id="confirmPassword" name="confirmPassword" type="text" class="validate" autocomplete="off" required> 
-                <label for="confirmPassword">Confirm Password</label>
+                {{!-- <label for="confirmPassword">Confirm Password</label> --}}
                 <span class="helper-text" data-error="wrong" data-success="right"></span>
             </div>
             <div class="row center-align ">
@@ -83,7 +83,7 @@
     </div>
 
     <div id="add-new" class="col s6 offset-s3">
-        <form action="/auth/add-new" method="POST">
+        <form action="/admin/add-new" method="POST">
             <div class="input-field ">
                 <input id="name" name="name" type="text" class="validate" autocomplete="off">
                 <label for="name">Name</label>
