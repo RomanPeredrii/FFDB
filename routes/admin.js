@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 })
 
 router.delete('/:id/delete', auth, async (req, res) => {
-    /****** delete user here *******/ log('here delete user', req.params)
+/****** delete user here *******/ log('here delete user', req.params)
     try {
         await User.findByIdAndDelete(req.params.id)
         return res.redirect('/admin')
@@ -31,21 +31,13 @@ router.delete('/:id/delete', auth, async (req, res) => {
 })
 
 router.post('/:id/edit', auth, async (req, res) => {
-    /****** edit container here *******/ log('here edit user', req.params, req.query)
+/****** edit user here *******/ log('here edit user', req.params, req.query)
         try {
             const user = await User.findById(req.params.id)
             if (!req.query.allow === 'true') {
                 return res.redirect('/admin')
             } else { 
-                
-                log(user)
-                res.send({
-                        activeUser: req.session.user.name,
-                        title: user.name,
-                        // IsEdit: true,
-                        place: 'Edit existing user information',
-                        user
-                    })        
+                res.send({user})        
                 }
         } catch (err) {
             log('EDIT USER PAGE ERROR', err)        
@@ -53,26 +45,37 @@ router.post('/:id/edit', auth, async (req, res) => {
     })
 
 router.post('/add-new', auth, async (req, res) => {
-    /****** add new user *******/ log('add new user', req.body)
+/****** add new user *******/ log('add new user', req.body)
     if (req.body.password === req.body.confirmPassword) {
         const user = new User({
-        name: req.body.name, 
-        login: req.body.login, 
-        email: req.body.email,
-        password: req.body.password
+            name: req.body.name, 
+            login: req.body.login, 
+            department: req.body.department,
+            email: req.body.email,
+            password: req.body.password
         })
         try {
             await user.save() 
             res.redirect('/admin')       
         } catch (error) {
-            log('ADD NEW USER ERROR', error)
-            
+            log('ADD NEW USER ERROR', error)            
         }
-
     } else {
         res.send('password error')
     }
+})
+
+router.post('/change-existing', auth, async (req, res) => {
+    log(req.body)
+    const {_id} = req.body
+    delete req.body._id
+    try {
+        await User.findOneAndUpdate({_id}, req.body)
+        res.redirect('/admin')    
+    } catch (error) {
+        log('EDIT USER ERROR', error)   
+    }
+})
 
 
-    })
 module.exports = router
