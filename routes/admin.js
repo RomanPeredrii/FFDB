@@ -5,39 +5,29 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 
 router.get('/', auth, async (req, res) => {
-    log('Admin Page', req.session)
-    res.render('admin', {
-        user: req.session.user.name,
-        place: 'USERS',
-        title: 'Admin Page',
-        isAdmin: true
-    })
-    // try {
-    //     const {login, password} = req.body
-    //     log(login, password)
-    //     const user = await User.findOne({name: login})
-    //     log(user)
-    //     if (user) {
-    //         if (password===user.password) {
-    //             req.session.user = user
-    //             req.session.isAuthenticated = true
-    //             req.session.save(err => {
-    //                 if (err) {
-    //                     throw err
-    //                 }
-    //                 log('AUTH', req.session)
-    //                 if (user.name === 'Admin') {
-    //                     res.redirect('/admin')
-    //                 }
-    //                 res.redirect('/containers')
-    //             })
-    //         }            
-    //     } else {
-    //         res.redirect('/')
-    //     }
-    // } catch (err) {
-    //     log('LOGIN ERROR', err)
-    // }   
+    try {
+        const users = await User.find() 
+        res.render('admin', {
+            user: req.session.user.name,
+            place: 'USERS',
+            title: 'Admin Page',
+            isAdmin: true,
+            users
+        })
+    } catch (err) {
+        log('GET USERS LIST ERROR', err)
+    }
+    
 })
+
+router.delete('/:id/delete', auth, async (req, res) => {
+    /****** delete user here *******/ log('here delete user', req.params)
+        try {
+            await User.findByIdAndDelete(req.params.id)
+            return res.redirect('/admin')
+        } catch (err) {
+            log('DELETE USER ERROR', err) 
+        }
+    })
 
 module.exports = router

@@ -8,7 +8,6 @@ const session = require("express-session")
 const MongoStore = require('connect-mongodb-session')(session)
 const path = require('path')
 const mongoose = require('mongoose')
-const User = require('./models/user')
 const addRoutes = require('./routes/add')
 const containersRoutes = require('./routes/containers')
 const homeRoutes = require('./routes/home')
@@ -17,7 +16,6 @@ const planningRoutes = require('./routes/planning')
 const authRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin')
 const {DB} = require('./data.js')
-const checkUser = require('./controllers/users')
 const varMid = require('./middleware/variables')
 
 
@@ -67,7 +65,6 @@ const start = async () => {
         app.listen(PORT, () => {
         log(`Server is running on port ${PORT}`)
         })
-        // await checkUser()
     }
     catch (err) {
         log("START ERROR",err)

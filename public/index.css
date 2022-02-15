@@ -48,3 +48,7 @@ table {
 #dateFrom, #dateTo {
     padding: 0 1.5rem 0 1.5rem;
 }
+
+.admin {
+    width: 50%;
+}
