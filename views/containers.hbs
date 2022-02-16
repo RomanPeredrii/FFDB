@@ -1,6 +1,7 @@
 {{#if containers.length}}
+  <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
-    <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+
     {{#each containers}}
       <tbody>
         <tr>
@@ -18,12 +19,6 @@
           <td class="weight">{{weight}}</td>
           <td class="cargo">{{cargo}}</td>
           <td class="comments">{{comments}}</td>
-          <td class="planing" title="Add to plan">
-            <label>
-              <input type="checkbox" class="plan" name="planed" value={{id}} />
-              <span></span>
-            </label>
-          </td>
           <td class="editContainerButton" title="Edit">
             <i class="material-icons">edit</i>
           </td>

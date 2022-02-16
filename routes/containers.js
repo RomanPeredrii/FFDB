@@ -13,10 +13,15 @@ const auth = require("../middleware/auth");
 const dateTime = () => {
   return moment().locale("us").format("MMMM Do YYYY, hh:mm:ss a");
 };
+const date = () => {
+  return moment().locale("us").format("MMMM Do YYYY");
+};
+
 log(dateTime());
 
 router.get("/", auth, async (req, res) => {
-  /******* get all containers here *******/ log("here containers", req.session);
+  /******* get all containers here *******/
+  // log("here containers", req.session);
   try {
     const containers = await Container.find().sort({ vessel: 1 });
     res.render("containers", {
@@ -31,18 +36,20 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-router.post("/edit", auth, async (req, res) => {
-  /******* change container record here *******/ log(
-    "here container edit & containers page update",
-    req.body
-  );
-  const { id } = req.body;
-  delete req.body.id;
+router.get("/planning", auth, async (req, res) => {
+  /******* get all containers without drivers *******/
+  // log("here containers for planning");
   try {
-    log(await Container.findOne({ id: id })); /*CODE ERROR HERE!!!!*/
-    res.redirect("/containers");
+    const containersForPlanning = await Container.find({ driver: "" });
+    res.render("planning", {
+      activeUser: req.session.user.name,
+      title: "Planning",
+      place: date(),
+      isPlanning: true,
+      containersForPlanning,
+    });
   } catch (error) {
-    log("EDIT CONTAINER ERROR", error);
+    log("GET ALL CONTAINERS WITHOUT DRIVERS ERROR", error);
   }
 });
 
@@ -150,7 +157,7 @@ router.post("/add-many", auth, upload.single("file"), async (req, res) => {
       log(record, "RECORD WITH NO NUMBER");
     }
   });
-
+  res.redirect("/containers");
   try {
     await fs.unlink(file, (error) => {
       if (error) throw error;

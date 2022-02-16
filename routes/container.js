@@ -60,4 +60,17 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
+router.post("/edit", auth, async (req, res) => {
+  /******* change container information here *******/
+  log("here change container information & containers page update");
+  const { id } = req.body;
+  delete req.body.id;
+  try {
+    await Container.findOneAndUpdate({ _id: id }, req.body);
+    res.redirect("/containers");
+  } catch (error) {
+    log("EDIT CONTAINER ERROR", error);
+  }
+});
+
 module.exports = router;
