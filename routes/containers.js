@@ -30,11 +30,11 @@ router.get('/', auth, async (req, res) => {
 })
 
 router.post('/edit', auth, async (req, res) => {
-    /******* get all containers here *******/    log('here container edit & containers page update', req.body)
+    /******* change container record here *******/    log('here container edit & containers page update', req.body)
     const {id} = req.body
     delete req.body.id
     try {
-        log(await Container.findOne({id: id}))
+        log(await Container.findOne({id: id}))   /*CODE ERROR HERE!!!!*/
         res.redirect('/containers')
     
     } catch (error) {

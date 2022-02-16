@@ -17,6 +17,7 @@ const authRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin')
 const {DB} = require('./data.js')
 const varMid = require('./middleware/variables')
+const csrf = require('csurf')
 
 
 
@@ -48,7 +49,7 @@ app.use(session({
     saveUninitialized: false,
     store
 }))
-
+app.use(csrf())
 app.use(varMid)
 app.use(express.urlencoded({extended: true}))
 app.use('/add', addRoutes)

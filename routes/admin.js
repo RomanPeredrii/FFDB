@@ -3,8 +3,10 @@ const {Router} = require('express')
 const router = Router()
 const User = require('../models/user')
 const auth = require('../middleware/auth')
+const bcrypt = require('bcryptjs')
 
 router.get('/', auth, async (req, res) => {
+/******* get all users here *******/  log('here get list of all users')    
     try {
         const users = await User.find() 
         res.render('admin', {
@@ -16,8 +18,7 @@ router.get('/', auth, async (req, res) => {
         })
     } catch (err) {
         log('GET USERS LIST ERROR', err)
-    }
-    
+    }    
 })
 
 router.delete('/:id/delete', auth, async (req, res) => {
@@ -32,27 +33,28 @@ router.delete('/:id/delete', auth, async (req, res) => {
 
 router.post('/:id/edit', auth, async (req, res) => {
 /****** edit user here *******/ log('here edit user', req.params, req.query)
-        try {
-            const user = await User.findById(req.params.id)
-            if (!req.query.allow === 'true') {
-                return res.redirect('/admin')
-            } else { 
-                res.send({user})        
-                }
-        } catch (err) {
-            log('EDIT USER PAGE ERROR', err)        
-        }    
-    })
+    try {
+        const user = await User.findById(req.params.id)
+        if (!req.query.allow === 'true') {
+            return res.redirect('/admin')
+        } else { 
+            res.send({user})        
+        }
+    } catch (err) {
+        log('EDIT USER PAGE ERROR', err)        
+    }    
+})
 
 router.post('/add-new', auth, async (req, res) => {
-/****** add new user *******/ log('add new user', req.body)
+/****** add new user *******/ log('here add new user', req.body)
     if (req.body.password === req.body.confirmPassword) {
+        const hashPaswd = await bcrypt.hash(req.body.password, 11)
         const user = new User({
             name: req.body.name, 
             login: req.body.login, 
             department: req.body.department,
             email: req.body.email,
-            password: req.body.password
+            password: hashPaswd
         })
         try {
             await user.save() 
@@ -66,7 +68,7 @@ router.post('/add-new', auth, async (req, res) => {
 })
 
 router.post('/change-existing', auth, async (req, res) => {
-    log(req.body)
+/****** change user record here *******/ log('change user', req.body)
     const {_id} = req.body
     delete req.body._id
     try {
