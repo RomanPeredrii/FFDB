@@ -1,19 +1,36 @@
 <div id="auth">
-    <form action="/auth/login" method="POST">
-        <div class="input-field col s12">
-            <input id="login" name="login" type="text" class="validate" autocomplete="off" required>
-            <label for="login">Login</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="password" type="password" name="password" class="validate" autocomplete="off" required>
-          <label for="password">Password</label>
-        </div> 
-        <input name="_csrf" value="{{csrf}}" hidden>
-        <div class="row center-align">
-            <button class="btn waves-effect waves-light"  type="submit" name="action">Log in
-                <i class="material-icons right">cloud</i>
-            </button>        
-        </div>        
-    </form>
-</div>  
-
+  <form action="/auth/login" method="POST">
+    <div class="input-field col s12">
+      <input
+        id="login"
+        name="login"
+        type="text"
+        class="validate"
+        autocomplete="off"
+        required
+      />
+      <label for="login">Login</label>
+    </div>
+    <div class="input-field col s12">
+      <input
+        id="password"
+        type="password"
+        name="password"
+        class="validate"
+        autocomplete="off"
+        required
+      />
+      <label for="password">Password</label>
+    </div>
+    <input name="_csrf" value="{{csrf}}" hidden />
+    <div class="row center-align">
+      <button
+        class="btn waves-effect waves-light"
+        type="submit"
+        name="action"
+      >Log in
+        <i class="material-icons right">cloud</i>
+      </button>
+    </div>
+  </form>
+</div>

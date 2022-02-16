@@ -1,5 +1,5 @@
-M.Tabs.init(document.querySelectorAll('.tabs'))
+M.Tabs.init(document.querySelectorAll(".tabs"));
 
-document.addEventListener('DOMContentLoaded', function() {
-M.Datepicker.init(document.querySelectorAll('.datepicker')) 
-})
+document.addEventListener("DOMContentLoaded", function () {
+  M.Datepicker.init(document.querySelectorAll(".datepicker"));
+});

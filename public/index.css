@@ -1,54 +1,55 @@
 .nav-wrapper {
-    padding: 0 2rem
+  padding: 0 2rem;
 }
 
 .container {
-    margin-top: 5rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 0 auto;
+  margin-top: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 auto;
 }
 
-.container h1, #add {
-    margin-bottom: 2rem;
+.container h1,
+#add {
+  margin-bottom: 2rem;
 }
 
 .plan {
-    opacity: 100;
+  opacity: 100;
 }
 
 html {
-height: 100%;   
-
+  height: 100%;
 }
 body {
-height: 100%;
-display: flex;
-flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
-flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 #auth {
-    margin-top: 8rem;
+  margin-top: 8rem;
 }
 
 table {
-    color: black;
+  color: black;
 }
 
 .input-date {
-    width: 8rem;    
+  width: 8rem;
 }
 
-#dateFrom, #dateTo {
-    padding: 0 1.5rem 0 1.5rem;
+#dateFrom,
+#dateTo {
+  padding: 0 1.5rem 0 1.5rem;
 }
 
 .admin {
-    width: 50%;
+  width: 50%;
 }

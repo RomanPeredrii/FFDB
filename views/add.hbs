@@ -1,85 +1,99 @@
 <form action="/add" method="POST">
-   <div class="input-field">
-      <input id="number" name="number" type="text" pattern = "[A-Z]{4}[0-9]{7}" class="validate" required>
-      <label for="number">number XXXX0000000</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input
+      id="number"
+      name="number"
+      type="text"
+      pattern="[A-Z]{4}[0-9]{7}"
+      class="validate"
+      required
+    />
+    <label for="number">number XXXX0000000</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="size" name="size" type="text" pattern = "20|40|45" class="validate" required> 
-      <label for="size">size 20/40/45</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input
+      id="size"
+      name="size"
+      type="text"
+      pattern="20|40|45"
+      class="validate"
+      required
+    />
+    <label for="size">size 20/40/45</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="status" name="status" type="text" pattern = "IMP|EXP" class="validate">
-      <label for="status">status IMP/EXP</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input
+      id="status"
+      name="status"
+      type="text"
+      pattern="IMP|EXP"
+      class="validate"
+    />
+    <label for="status">status IMP/EXP</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="POL" name="POL" type="text">
-      <label for="POL">Port Of Loading</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input id="POL" name="POL" type="text" />
+    <label for="POL">Port Of Loading</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="POD" name="POD" type="text">
-      <label for="POD">Port Of Destination</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>    
+  <div class="input-field">
+    <input id="POD" name="POD" type="text" />
+    <label for="POD">Port Of Destination</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="FD" name="FD" type="text">
-      <label for="FD">Final Destination</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div> 
+  <div class="input-field">
+    <input id="FD" name="FD" type="text" />
+    <label for="FD">Final Destination</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
+  <div class="input-field">
+    <input id="line" name="line" type="text" />
+    <label for="line">Containers Line</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="line" name="line" type="text">
-      <label for="line">Containers Line</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input id="vessel" name="vessel" type="text" />
+    <label for="vessel">Vessel</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="vessel" name="vessel" type="text">
-      <label for="vessel">Vessel</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>    
+  <div class="input-field">
+    <input id="weight" name="weight" type="text" />
+    <label for="weigth">Weight</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="weight" name="weight" type="text">
-      <label for="weigth">Weight</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>    
+  <div class="input-field">
+    <input id="driver" name="driver" type="text" />
+    <label for="driver">Diver</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="driver" name="driver" type="text">
-      <label for="driver">Diver</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div> 
+  <div class="input-field">
+    <input id="cargo" name="cargo" type="text" />
+    <label for="cargo">Cargo</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="cargo" name="cargo" type="text">
-      <label for="cargo">Cargo</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>
+  <div class="input-field">
+    <input id="comments" name="comments" type="text" />
+    <label for="comments">Comments</label>
+    <span class="helper-text" data-error="wrong" data-success="right"></span>
+  </div>
 
-   <div class="input-field">
-      <input id="comments" name="comments" type="text">
-      <label for="comments">Comments</label>
-      <span class="helper-text" data-error="wrong" data-success="right"></span>
-   </div>   
+  <input name="_csurf" value="{{csrf}}" hidden />
 
-   <input name="_csurf" value="{{csrf}}" hidden>
-    
-   <div class="row center-align">
-      <button id="add" class="btn btn-primary ">Add container</button>
-   </div>   
+  <div class="row center-align">
+    <button id="add" class="btn btn-primary">Add container</button>
+  </div>
 </form>
-
-
-
- 
-

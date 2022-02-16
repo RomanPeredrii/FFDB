@@ -1,42 +1,42 @@
-{{#if containers.length }}    
-        <table class = "striped highlight centered">
-            <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden>
+{{#if containers.length}}
+  <table class="striped highlight centered">
+    <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
     {{#each containers}}
-            <tbody>
-                <tr>
-                    <td class = "title">{{number}}</td>
-                    <td class = "size">{{size}}</td>
-                    <td class = "status">{{status}}</td>
-                    <td class = "client">{{client}}</td>
-                    <td class = "POL">{{POL}}</td>
-                    <td class = "POD">{{POD}}</td>
-                    <td class = "FD">{{FD}}</td>
-                    <td class = "BL">{{BL}}</td>
-                    <td class = "line">{{line}}</td>
-                    <td class = "vessel">{{vessel}}</td>
-                    <td class = "driver">{{driver}}</td>
-                    <td class = "weight">{{weight}}</td>
-                    <td class = "cargo">{{cargo}}</td>
-                    <td class = "comments">{{comments}}</td>
-                    <td class = "planing" title="Add to plan"> 
-                        <label>
-                            <input type="checkbox" class="plan" name = "planed" value={{id}}/>                        
-                            <span></span>
-                        </label>
-                    </td>                
-                    <td class = "editContainerButton" title="Edit"> 
-                        <i class="material-icons">edit</i>
-                    </td>
-                    <td class = "deleteContainerButton" title="To trash"> 
-                        <i class="material-icons">delete_forever</i>
-                    </td>
-                    <td class = "status" hidden>{{id}}</td> 
-                </tr>
-            </tbody>
-        
+      <tbody>
+        <tr>
+          <td class="title">{{number}}</td>
+          <td class="size">{{size}}</td>
+          <td class="status">{{status}}</td>
+          <td class="client">{{client}}</td>
+          <td class="POL">{{POL}}</td>
+          <td class="POD">{{POD}}</td>
+          <td class="FD">{{FD}}</td>
+          <td class="BL">{{BL}}</td>
+          <td class="line">{{line}}</td>
+          <td class="vessel">{{vessel}}</td>
+          <td class="driver">{{driver}}</td>
+          <td class="weight">{{weight}}</td>
+          <td class="cargo">{{cargo}}</td>
+          <td class="comments">{{comments}}</td>
+          <td class="planing" title="Add to plan">
+            <label>
+              <input type="checkbox" class="plan" name="planed" value={{id}} />
+              <span></span>
+            </label>
+          </td>
+          <td class="editContainerButton" title="Edit">
+            <i class="material-icons">edit</i>
+          </td>
+          <td class="deleteContainerButton" title="To trash">
+            <i class="material-icons">delete_forever</i>
+          </td>
+          <td class="status" hidden>{{id}}</td>
+        </tr>
+      </tbody>
+
     {{/each}}
-        </table>
+  </table>
 {{else}}
-<p>Nothing there</p>
+  <p>Nothing there</p>
 {{/if}}
 <script src="/containers.js"></script>
