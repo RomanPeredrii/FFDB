@@ -63,19 +63,25 @@ router.post('/add-new', auth, async (req, res) => {
             log('ADD NEW USER ERROR', error)            
         }
     } else {
-        res.send('password error')
+        res.send('confirm password error')  // doesnt resive on front!!!!!!!
     }
 })
 
 router.post('/change-existing', auth, async (req, res) => {
 /****** change user record here *******/ log('change user', req.body)
-    const {_id} = req.body
-    delete req.body._id
-    try {
-        await User.findOneAndUpdate({_id}, req.body)
-        res.redirect('/admin')    
-    } catch (error) {
-        log('EDIT USER ERROR', error)   
+    if (req.body.password === req.body.confirmPassword) {
+        const hashPaswd = await bcrypt.hash(req.body.password, 11)
+        req.body.password = hashPaswd
+        const {_id} = req.body
+        delete req.body._id
+        try {
+            await User.findOneAndUpdate({_id}, req.body)
+            res.redirect('/admin')    
+        } catch (error) {
+            log('EDIT USER ERROR', error)   
+        }
+    } else {
+        res.send('confirm password error')  // doesnt resive on front!!!!!!!
     }
 })
 

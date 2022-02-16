@@ -1,5 +1,6 @@
 {{#if containers.length }}    
         <table class = "striped highlight centered">
+            <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden>
     {{#each containers}}
             <tbody>
                 <tr>

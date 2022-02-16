@@ -7,7 +7,6 @@ const auth = require('../middleware/auth')
 
 router.delete('/:id/delete', auth, async (req, res) => {
 /****** delete container here *******/ log('here delete container', req.params)
-    log('delete id', req.params.id)              
     try {
         await Container.findByIdAndDelete(req.params.id)
         return res.redirect('/containers')

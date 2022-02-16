@@ -23,6 +23,7 @@
     <div id="existing-users" class="col m12">
         {{#if users.length }}    
             <table class = "striped highlight centered">
+                <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden>
                 {{#each users}}
                         <tbody>
                             <tr>
@@ -34,7 +35,7 @@
                                 <td class = "deleteUserButton" title="To trash"> 
                                     <i class="material-icons">delete_forever</i>
                                 </td>
-                                <td class = "id" hidden>{{id}}</td> 
+                                <td class = "id" hidden>{{id}}</td>                                 
                             </tr>
                         </tbody>
                 {{/each}}

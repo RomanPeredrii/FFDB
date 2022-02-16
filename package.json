@@ -20,6 +20,7 @@
     "express-session": "^1.17.2",
     "http": "^0.0.1-security",
     "http-server": "^14.1.0",
+    "jshint": "^2.13.4",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.29.1",
     "mongoose": "^6.1.5",

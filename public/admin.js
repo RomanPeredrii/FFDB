@@ -8,7 +8,10 @@ document.querySelectorAll('.deleteUserButton')
             await fetch(`/admin/${node.parentNode.textContent.trim()
                 .split("\n")[node.parentNode.textContent.trim().split("\n")
                 .length - 1].trim()}/delete`, 
-                {method: 'DELETE'}) 
+                {method: 'DELETE', 
+                headers: {
+                  'CSRF-Token': document.querySelector('#_csrf').value 
+                }}) 
             window.location.reload()
         } catch (error) {
             log('DELETE USER ERROR', error)
@@ -18,14 +21,14 @@ document.querySelectorAll('.deleteUserButton')
 
 document.querySelectorAll('.editUserButton').
 forEach(node => {
-    node.addEventListener("click", async () => {      
+    node.addEventListener("click", async () => {  
         try {
             const raw = await fetch(`/admin/${node.parentNode.textContent.trim()
                 .split("\n")[node.parentNode.textContent.trim().split("\n")
                 .length - 1].trim()}/edit?allow=true`, 
                 {method: 'POST', 
                 headers: {
-                    'CSRF-Token': csrfToken() 
+                    'CSRF-Token': document.querySelector('#_csrf').value 
                   }
                 })
             const body = await raw.json()
