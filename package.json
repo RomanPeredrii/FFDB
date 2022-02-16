@@ -32,6 +32,7 @@
     "xlsx": "^0.17.5"
   },
   "devDependencies": {
+    "@architect/sandbox": "^4.5.2",
     "ember-cli-materialize": "^0.22.0",
     "nodemon": "^2.0.15"
   }
