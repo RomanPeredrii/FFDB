@@ -64,8 +64,8 @@ document
           "CSRF-Token": document.querySelector("#_csrf").value,
         },
       });
-      const result = await response.json();
-      /******interim******/ log("SUCCESS:", JSON.stringify(result));
+      window.location.reload();
+      /******interim******/ log("SUCCESS");
     } catch (error) {
       /******interim******/ log("UPLOAD ERROR:", error);
     }

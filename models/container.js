@@ -33,7 +33,7 @@ const container = new Schema({
   FD: {
     type: String,
   },
-  driver: "" || {
+  driver: {
     type: String,
   },
   weight: {

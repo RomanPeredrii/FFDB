@@ -10,20 +10,27 @@ const xlsx = require("xlsx");
 const fs = require("fs");
 const auth = require("../middleware/auth");
 
-const dateTime = () => {
-  return moment().locale("us").format("MMMM Do YYYY, hh:mm:ss a");
-};
-const date = () => {
-  return moment().locale("us").format("MMMM Do YYYY");
+const date = (vess) => {
+  let ATB, vessel, dateNOW, dateTimeNOW;
+  if (vess) {
+    ATB = new Date(moment(vess.substring(0, 10).trim(), "DD.MM.YYYY"));
+    vessel = vess.substring(10).trim();
+    dateTimeNOW = moment().locale("uk").format("L LTS");
+    dateNOW = moment().locale("uk").format("L");
+  } else {
+    dateTimeNOW = moment().locale("uk").format("L LTS");
+    dateNOW = moment().locale("uk").format("L");
+  }
+  return { ATB, vessel, dateNOW, dateTimeNOW };
 };
 
-log(dateTime());
-
+log(date().dateNOW);
+log(date('12.02.2022 MSC ELEONORA AO202R'));
 router.get("/", auth, async (req, res) => {
   /******* get all containers here *******/
-  // log("here containers", req.session);
+  log("get all containers here");
   try {
-    const containers = await Container.find().sort({ vessel: 1 });
+    const containers = await Container.find();
     res.render("containers", {
       activeUser: req.session.user.name,
       title: "Containers",
@@ -44,7 +51,7 @@ router.get("/planning", auth, async (req, res) => {
     res.render("planning", {
       activeUser: req.session.user.name,
       title: "Planning",
-      place: date(),
+      place: date().dateNOW,
       isPlanning: true,
       containersForPlanning,
     });
@@ -122,7 +129,7 @@ router.post("/add-many", auth, upload.single("file"), async (req, res) => {
   data = data.concat(newData);
   data.forEach(async (record) => {
     if (record && record.number) {
-      log(record);
+      // log("record", record);
       try {
         await Container.findOneAndUpdate(
           {
@@ -139,7 +146,7 @@ router.post("/add-many", auth, upload.single("file"), async (req, res) => {
             vessel: record.vessel,
             BL: record.BL,
             FD: record.FD,
-            driver: record.driver,
+            driver: record.driver || "",
             weight: record.weight,
             cargo: record.cargo,
             comments: record.comments,

@@ -1,7 +1,4 @@
-# !!! dinamic generation with js is beter solution
-
 # MAIN PAGE
-#     - autorization
 #     - instruction
 # CONTAINERS
 #     - choice viewed table fields
@@ -15,7 +12,12 @@
 
 # MONGO 
 #     - add date 
-#     - Users
 #     - Drivers
 #     - Daily prospect
+#     - Vessel
+
+# UI
+#     - droplist
+#     - autocomplete
   
+# !!!!!!!!!!!!!
