@@ -14,6 +14,7 @@ router.post("/add-new", auth, async (req, res) => {
     vehicle: req.body.vehicle,
     trailer: req.body.trailer,
     carrier: req.body.carrier,
+    phone: req.body.phone,
   });
   try {
     await driver.save();
@@ -48,11 +49,11 @@ router.post("/:id/edit", auth, async (req, res) => {
 });
 
 router.post("/change-existing", auth, async (req, res) => {
-  /****** change user record here *******/ log("change driver", req.body);
+  /****** change driver record here *******/ log("change driver", req.body);
   const { _id } = req.body;
   delete req.body._id;
   try {
-    await User.findOneAndUpdate({ _id }, req.body);
+    await Driver.findOneAndUpdate({ _id }, req.body);
     res.redirect("/drivers");
   } catch (error) {
     log("EDIT USER ERROR", error);

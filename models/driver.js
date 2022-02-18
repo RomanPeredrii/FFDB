@@ -12,6 +12,10 @@ const driver = new Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
   // carrier: {
   //   type: Schema.Types.ObjectId,
   //   ref: "Carrier",

@@ -37,6 +37,7 @@
               <td class="vehicle">{{vehicle}}</td>
               <td class="trailer">{{trailer}}</td>
               <td class="carrier">{{carrier}}</td>
+              <td class="phone">{{phone}}</td>
               <td class="editDriverButton" title="edit driver information">
                 <i class="material-icons">edit</i>
               </td>
@@ -160,6 +161,22 @@
           data-success="right"
         ></span>
       </div>
+      <div>
+        <input
+          id="phone"
+          name="phone"
+          type="text"
+          class="validate"
+          autocomplete="off"
+          required
+        />
+        <label for="phone">phone</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
       <input name="_csrf" value="{{csrf}}" hidden />
       <div class="row center-align">
         <button class="btn btn-primary" type="submit">SAVE CHANGES</button>
@@ -195,7 +212,7 @@
           data-success="right"
         ></span>
       </div>
-            <div>
+      <div>
         <input
           id="passport"
           name="passport"
@@ -269,6 +286,22 @@
           required
         />
         <label for="carrier">carrier</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <div>
+        <input
+          id="phone"
+          name="phone"
+          type="text"
+          class="validate"
+          autocomplete="off"
+          required
+        />
+        <label for="phone">phone</label>
         <span
           class="helper-text"
           data-error="wrong"
