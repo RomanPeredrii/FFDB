@@ -1,42 +1,46 @@
-<div class="row admin">
+<div class="row driver">
   <div class="col m12">
     <ul class="tabs">
-      <li class="tab col m4" title="users list">
-        <a class="existingUsers" href="#existing-users">
-          <i class="medium material-icons">people</i>
+      <li class="tab col m4" title="drivers list">
+        <a class="existingDrivers" href="#existing-drivers">
+          List
         </a>
       </li>
       <li
         class="tab col m4 disabled"
-        id="changeUserData"
-        title="change existing user"
+        id="changeDriverData"
+        title="change existing driver"
       >
-        <a class="changeUserData" href="#change-existing">
-          <i class="medium material-icons">person</i>
+        <a class="changeDriverData" href="#change-existing">
+          Edit
         </a>
       </li>
-      <li class="tab col m4" title="add new user">
+      <li class="tab col m4" title="add new driver">
         <a href="#add-new">
-          <i class="medium material-icons">person_add</i>
+          Add
         </a>
       </li>
     </ul>
   </div>
 
-  <div id="existing-users" class="col m12">
-    {{#if users.length}}
+  <div id="existing-drivers" class="col m12">
+    {{#if drivers.length}}
       <table class="striped highlight centered">
         <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
-        {{#each users}}
+        {{#each drivers}}
           <tbody>
             <tr>
-              <td class="name">{{name}}</td>
-              <td class="login">{{login}}</td>
-              <td class="role">{{role}}</td>
-              <td class="editUserButton" title="edit user">
+              <td class="firstName">{{firstName}}</td>
+              <td class="lastName">{{lastName}}</td>
+              <td class="passport">{{passport}}</td>
+              <td class="passport">{{DOB}}</td>
+              <td class="vehicle">{{vehicle}}</td>
+              <td class="trailer">{{trailer}}</td>
+              <td class="carrier">{{carrier}}</td>
+              <td class="editDriverButton" title="edit driver information">
                 <i class="material-icons">edit</i>
               </td>
-              <td class="deleteUserButton" title="To trash">
+              <td class="deleteDriverButton" title="To trash">
                 <i class="material-icons">delete_forever</i>
               </td>
               <td class="id" hidden>{{id}}</td>
@@ -50,16 +54,10 @@
   </div>
 
   <div id="change-existing" class="col s6 offset-s3">
-    <form action="/admin/change-existing" method="POST">
+    <form action="/driver/change-existing" method="POST">
       <div>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          class="validate"
-          class="autocomplete"
-        />
-        <label for="name">Name</label>
+        <input id="firstName" name="firstName" type="text" class="validate" />
+        <label for="firstName">firstName</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -68,14 +66,14 @@
       </div>
       <div>
         <input
-          id="email"
-          name="email"
+          id="lastName"
+          name="lastName"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="email">E-mail</label>
+        <label for="lastName">lastName</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -84,14 +82,14 @@
       </div>
       <div>
         <input
-          id="department"
-          name="department"
+          id="passport"
+          name="passport"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="department">Department</label>
+        <label for="passport">passport</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -100,14 +98,14 @@
       </div>
       <div>
         <input
-          id="login"
-          name="login"
+          id="DOB"
+          name="DOB"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="login">Login</label>
+        <label for="DOB">DOB</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -116,14 +114,14 @@
       </div>
       <div>
         <input
-          id="role"
-          name="role"
+          id="vehicle"
+          name="vehicle"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="role">Role</label>
+        <label for="vehicle">vehicle</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -132,14 +130,14 @@
       </div>
       <div>
         <input
-          id="password"
-          name="password"
+          id="trailer"
+          name="trailer"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="password">Password</label>
+        <label for="trailer">trailer</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -148,14 +146,14 @@
       </div>
       <div>
         <input
-          id="confirmPassword"
-          name="confirmPassword"
+          id="carrier"
+          name="carrier"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="carrier">carrier</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -171,112 +169,106 @@
   </div>
 
   <div id="add-new" class="col s6 offset-s3">
-    <form action="/admin/add-new" method="POST">
-      <div class="input-field">
-        <input
-          id="name"
-          name="name"
-          type="text"
-          class="validate"
-          autocomplete="off"
-        />
-        <label for="name">Name</label>
+    <form action="/driver/add-new" method="POST">
+      <div>
+        <input id="firstName" name="firstName" type="text" class="validate" />
+        <label for="firstName">firstName</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+      <div>
         <input
-          id="email"
-          name="email"
+          id="lastName"
+          name="lastName"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="email">E-mail</label>
+        <label for="lastName">lastName</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+            <div>
         <input
-          id="department"
-          name="department"
+          id="passport"
+          name="passport"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="department">Department</label>
+        <label for="passport">passport</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+      <div>
         <input
-          id="login"
-          name="login"
+          id="DOB"
+          name="DOB"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="login">Login</label>
+        <label for="DOB">DOB</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+      <div>
         <input
-          id="role"
-          name="role"
+          id="vehicle"
+          name="vehicle"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="role">Role</label>
+        <label for="vehicle">vehicle</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+      <div>
         <input
-          id="password"
-          name="password"
+          id="trailer"
+          name="trailer"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="password">Password</label>
+        <label for="trailer">trailer</label>
         <span
           class="helper-text"
           data-error="wrong"
           data-success="right"
         ></span>
       </div>
-      <div class="input-field">
+      <div>
         <input
-          id="confirmPassword"
-          name="confirmPassword"
+          id="carrier"
+          name="carrier"
           type="text"
           class="validate"
           autocomplete="off"
           required
         />
-        <label for="password">Confirm Password</label>
+        <label for="carrier">carrier</label>
         <span
           class="helper-text"
           data-error="wrong"
@@ -290,4 +282,4 @@
     </form>
   </div>
 </div>
-<script src="/admin.js"></script>
+<script src="/drivers.js"></script>

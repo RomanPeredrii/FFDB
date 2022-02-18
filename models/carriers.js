@@ -4,14 +4,23 @@ const carrier = new Schema({
     type: String,
     required: true,
   },
-  TIR: {
+  code: {
     type: String,
     required: true,
   },
-  vehicle: {
+  address: {
     type: String,
     required: false /** temp **/,
-  }
+  },
+  drivers: [
+    {
+      containerId: {
+        type: Schema.Types.ObjectId,
+        ref: "Container",
+        required: true,
+      },
+    },
+  ],
 });
 
 module.exports = model("Carrier", carrier);

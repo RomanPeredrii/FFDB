@@ -3,34 +3,32 @@ const { Router } = require("express");
 const router = Router();
 const Container = require("../models/container");
 const path = require("path");
-const moment = require("moment");
 const multer = require("multer");
 const upload = multer({ dest: "./buffer" });
 const xlsx = require("xlsx");
 const fs = require("fs");
 const auth = require("../middleware/auth");
+const date = require("../controllers/date");
 
-const date = (vess) => {
-  let ATB, vessel, dateNOW, dateTimeNOW;
-  if (vess) {
-    ATB = new Date(moment(vess.substring(0, 10).trim(), "DD.MM.YYYY"));
-    vessel = vess.substring(10).trim();
-    dateTimeNOW = moment().locale("uk").format("L LTS");
-    dateNOW = moment().locale("uk").format("L");
-  } else {
-    dateTimeNOW = moment().locale("uk").format("L LTS");
-    dateNOW = moment().locale("uk").format("L");
-  }
-  return { ATB, vessel, dateNOW, dateTimeNOW };
-};
+log(date());
+log(date("12.02.2022 MSC ELEONORA AO202R"));
 
-log(date().dateNOW);
-log(date('12.02.2022 MSC ELEONORA AO202R'));
 router.get("/", auth, async (req, res) => {
   /******* get all containers here *******/
   log("get all containers here");
   try {
     const containers = await Container.find();
+    containers.forEach((cont) => {
+      if (cont.driver) {
+        cont.driver = cont.driver.trim();
+        if (!cont.driver.length) {
+          cont.downtime = date(cont.vessel).downtime;
+        }
+      } else {
+        cont.downtime = date(cont.vessel).downtime;
+      }
+    });
+
     res.render("containers", {
       activeUser: req.session.user.name,
       title: "Containers",

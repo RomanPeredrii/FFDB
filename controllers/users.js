@@ -9,6 +9,5 @@ module.exports = async function checkUser() {
   if (!user) {
     user = new User(AdminUser);
     await user.save();
-  } else {
-  }
+  } else { return }
 };

@@ -37,6 +37,9 @@ const container = new Schema({
   FD: {
     type: String,
   },
+  downtime: {
+    type: Number,
+  },
   driver: {
     type: String,
   },

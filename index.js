@@ -17,6 +17,8 @@ const containerRoutes = require("./routes/container");
 const planningRoutes = require("./routes/planning");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
+const driversRoutes = require("./routes/drivers");
+const driverRoutes = require("./routes/driver");
 const { DB } = require("./data.js");
 const varMid = require("./middleware/variables");
 const csrf = require("csurf");
@@ -62,6 +64,8 @@ app.use("/container", containerRoutes);
 app.use("/planning", planningRoutes);
 app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
+app.use("/drivers", driversRoutes);
+app.use("/driver", driverRoutes);
 
 const start = async () => {
   try {

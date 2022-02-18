@@ -1,4 +1,4 @@
-{{!-- {{#if containersForPlanning.length}}
+{{#if containersForPlanning.length}}
   <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
 
@@ -14,7 +14,7 @@
           <td class="FD">{{FD}}</td>
           <td class="BL">{{BL}}</td>
           <td class="line">{{line}}</td>
-          <td class="vessel">{{vessel}}</td>
+          <td class="vessel">{{vessel}}</td>          
           <td class="driver">{{driver}}</td>
           <td class="weight">{{weight}}</td>
           <td class="cargo">{{cargo}}</td>
@@ -38,17 +38,17 @@
   </table>
 {{else}}
   <p>Nothing there</p>
-{{/if}} --}}
+{{/if}}
 
   <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+  {{!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
   
   <!-- Dropdown Structure -->
   
   <ul id='dropdown1' class='dropdown-content'>
     {{#each containersForPlanning}}
     <li class="data">{{number}}</li>
-    {{/each}}
+    {{/each}} --}}
   </ul>
 
    {{!-- <div class="row">

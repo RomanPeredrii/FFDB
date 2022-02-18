@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
           if (err) {
             throw err;
           }
-          if (user.login === "Admin") {
+          if (user.role === "Admin") {
             return res.redirect("/admin");
           }
           res.redirect("/containers");

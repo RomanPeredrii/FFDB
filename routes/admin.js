@@ -48,13 +48,13 @@ router.post("/:id/edit", auth, async (req, res) => {
 router.post("/add-new", auth, async (req, res) => {
   /****** add new user *******/ log("here add new user", req.body);
   if (req.body.password === req.body.confirmPassword) {
-    const hashPaswd = await bcrypt.hash(req.body.password, 11);
+    const hashPswd = await bcrypt.hash(req.body.password, 11);
     const user = new User({
       name: req.body.name,
       login: req.body.login,
       department: req.body.department,
       email: req.body.email,
-      password: hashPaswd,
+      password: hashPswd,
     });
     try {
       await user.save();
@@ -63,15 +63,15 @@ router.post("/add-new", auth, async (req, res) => {
       log("ADD NEW USER ERROR", error);
     }
   } else {
-    res.send("confirm password error"); // doesnt resive on front!!!!!!!
+    res.send("confirm password error"); // doesn't receive on front!!!!!!!
   }
 });
 
 router.post("/change-existing", auth, async (req, res) => {
   /****** change user record here *******/ log("change user", req.body);
   if (req.body.password === req.body.confirmPassword) {
-    const hashPaswd = await bcrypt.hash(req.body.password, 11);
-    req.body.password = hashPaswd;
+    const hashPswd = await bcrypt.hash(req.body.password, 11);
+    req.body.password = hashPswd;
     const { _id } = req.body;
     delete req.body._id;
     try {
@@ -81,7 +81,7 @@ router.post("/change-existing", auth, async (req, res) => {
       log("EDIT USER ERROR", error);
     }
   } else {
-    res.send("confirm password error"); // doesnt resive on front!!!!!!!
+    res.send("confirm password error"); // doesn't receive on front!!!!!!!
   }
 });
 
