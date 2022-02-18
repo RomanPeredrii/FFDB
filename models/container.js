@@ -27,6 +27,10 @@ const container = new Schema({
   vessel: {
     type: String,
   },
+  // vessel: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Vessel"
+  // },
   BL: {
     type: String,
   },
@@ -36,8 +40,12 @@ const container = new Schema({
   driver: {
     type: String,
   },
+  // carrier: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Carrier"
+  // },
   weight: {
-    type: String,
+    type: Number,
   },
   cargo: {
     type: String,
