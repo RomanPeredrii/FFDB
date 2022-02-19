@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const prospect = new Schema({
   date: {
-    type: Date,
+    type: Date,  /**String should be better**/
     default: Date.now,
   },
   user: {

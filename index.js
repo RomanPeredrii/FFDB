@@ -19,6 +19,8 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const driversRoutes = require("./routes/drivers");
 const driverRoutes = require("./routes/driver");
+const vesselRoutes = require("./routes/vessel");
+const vesselsRoutes = require("./routes/vessels");
 const { DB } = require("./data.js");
 const varMid = require("./middleware/variables");
 const csrf = require("csurf");
@@ -57,15 +59,17 @@ app.use(
 app.use(csrf());
 app.use(varMid);
 app.use(express.urlencoded({ extended: true }));
-app.use("/add", addRoutes);
-app.use("/containers", containersRoutes);
 app.use("/", homeRoutes);
-app.use("/container", containerRoutes);
-app.use("/planning", planningRoutes);
-app.use("/auth", authRoutes);
+app.use("/add", addRoutes);
 app.use("/admin", adminRoutes);
+app.use("/auth", authRoutes);
+app.use("/containers", containersRoutes);
+app.use("/container", containerRoutes);
 app.use("/drivers", driversRoutes);
 app.use("/driver", driverRoutes);
+app.use("/vessels", vesselsRoutes);
+app.use("/vessel", vesselRoutes);
+app.use("/planning", planningRoutes);
 
 const start = async () => {
   try {

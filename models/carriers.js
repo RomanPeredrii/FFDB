@@ -14,9 +14,9 @@ const carrier = new Schema({
   },
   drivers: [
     {
-      containerId: {
+      driverId: {
         type: Schema.Types.ObjectId,
-        ref: "Container",
+        ref: "Driver",
         required: true,
       },
     },

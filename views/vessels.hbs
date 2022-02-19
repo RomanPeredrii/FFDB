@@ -1,0 +1,126 @@
+<div class="row vessel">
+  <div class="col m12">
+    <ul class="tabs">
+      <li class="tab col m4" title="vessels list">
+        <a class="existingVessels" href="#existing-vessels">
+          <b>List</b>
+        </a>
+      </li>
+      <li
+        class="tab col m4 disabled"
+        id="changeVesselData"
+        title="change existing vessel"
+      >
+        <a class="changeVesselData" href="#change-existing">
+          Edit
+        </a>
+      </li>
+      <li class="tab col m4" title="add new vessel">
+        <a href="#add-new">
+          Add
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="existing-vessels" class="col m12">
+    {{#if vessels.length}}
+      <table class="striped highlight centered">
+        <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+        {{#each vessels}}
+          <tbody>
+            <tr>
+              <td class="ATB">{{ETB}}</td>
+              <td class="ATB">{{ATB}}</td>
+              <td class="name">{{name}}</td>
+              <td class="editVesselButton" title="edit vessel information">
+                <i class="material-icons">edit</i>
+              </td>
+              <td class="deleteVesselButton" title="To trash">
+                <i class="material-icons">delete_forever</i>
+              </td>
+              <td class="id" hidden>{{id}}</td>
+            </tr>
+          </tbody>
+        {{/each}}
+      </table>
+    {{else}}
+      <p>Nothing there</p>
+    {{/if}}
+  </div>
+
+  <div id="change-existing" class="col s6 offset-s3">
+    <form action="/vessel/change-existing" method="POST">
+      <div>
+      
+        <input class="datepicker" id="ETB" name="ETB" type="text" class="validate" />
+        <label for="ETB">ETB</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <div>
+        <input class="datepicker" id="ATB" name="ATB" type="text" class="validate" />
+        <label for="ATB">ATB</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>      
+      <div>
+        <input id="name" name="name" type="text" class="validate" />
+        <label for="name">name</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <input name="_csrf" value="{{csrf}}" hidden />
+      <div class="row center-align">
+        <button class="btn btn-primary" type="submit">SAVE CHANGES</button>
+      </div>
+      <input id="_id" name="_id" type="text" class="_id" hidden />
+    </form>
+  </div>
+
+  <div id="add-new" class="col s6 offset-s3">
+    <form action="/vessel/add-new" method="POST">
+      <div>
+        <input class="datepicker" id="ETB" name="ETB" type="text" class="validate" />
+        <label for="ETB">ETB</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <div>
+        <input class="datepicker" id="ATB" name="ATB" type="text" class="validate" />
+        <label for="ATB">ATB</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>      
+      <div>
+        <input id="name" name="name" type="text" class="validate" />
+        <label for="name">name</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <input name="_csrf" value="{{csrf}}" hidden />
+      <div class="row center-align">
+        <button class="btn btn-primary" type="submit">ADD NEW</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/vessels.js"></script>

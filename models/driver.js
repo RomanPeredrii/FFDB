@@ -37,6 +37,7 @@ const driver = new Schema({
     type: String,
     required: true,
   },
+  comments: String
 });
 
 module.exports = model("Driver", driver);

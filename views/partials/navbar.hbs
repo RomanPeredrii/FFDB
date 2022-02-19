@@ -19,6 +19,14 @@
         {{>navButtonsForAdmin}}
         {{>activeUser}}
         {{/if}}
+        {{#if isDrivers}}
+        {{>navButtonsForDrivers}}
+        {{>activeUser}}
+        {{/if}}
+        {{#if isVessels}}
+        {{>navButtonsForVessels}}
+        {{>activeUser}}
+        {{/if}}
       </ul>
     </div>
   </nav>  

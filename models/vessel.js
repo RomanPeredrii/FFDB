@@ -5,7 +5,11 @@ const vessel = new Schema({
     required: true,
   },
   ATB: {
-    type: Date,
+    type: String,
+    required: true,
+  },
+  ETB: {
+    type: String,
     required: true,
   }
 });

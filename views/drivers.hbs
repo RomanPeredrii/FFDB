@@ -38,6 +38,7 @@
               <td class="trailer">{{trailer}}</td>
               <td class="carrier">{{carrier}}</td>
               <td class="phone">{{phone}}</td>
+              <td class="comments">{{comments}}</td>
               <td class="editDriverButton" title="edit driver information">
                 <i class="material-icons">edit</i>
               </td>
@@ -177,6 +178,21 @@
           data-success="right"
         ></span>
       </div>
+      <div>
+        <input
+          id="comments"
+          name="comments"
+          type="text"
+          class="validate"
+          autocomplete="off"
+        />
+        <label for="comments">comments</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
       <input name="_csrf" value="{{csrf}}" hidden />
       <div class="row center-align">
         <button class="btn btn-primary" type="submit">SAVE CHANGES</button>
@@ -302,6 +318,21 @@
           required
         />
         <label for="phone">phone</label>
+        <span
+          class="helper-text"
+          data-error="wrong"
+          data-success="right"
+        ></span>
+      </div>
+      <div>
+        <input
+          id="comments"
+          name="comments"
+          type="text"
+          class="validate"
+          autocomplete="off"
+        />
+        <label for="comments">comments</label>
         <span
           class="helper-text"
           data-error="wrong"

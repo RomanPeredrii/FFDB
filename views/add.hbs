@@ -6,6 +6,7 @@
       type="text"
       pattern="[A-Z]{4}[0-9]{7}"
       class="validate"
+      autocomplete="off"
       required
     />
     <label for="number">number XXXX0000000</label>
@@ -13,29 +14,25 @@
   </div>
 
   <div class="input-field">
-    <input
-      id="size"
-      name="size"
-      type="text"
-      pattern="20|40|45"
-      class="validate"
-      required
-    />
-    <label for="size">size 20/40/45</label>
-    <span class="helper-text" data-error="wrong" data-success="right"></span>
+    <select id="size" name="size">
+      <option value="" disabled selected>20/40/45</option>
+      <option value="20">20</option>
+      <option value="40">40</option>
+      <option value="45">45</option>
+    </select>
+    <label for="size">Size</label>
   </div>
 
   <div class="input-field">
-    <input
-      id="status"
-      name="status"
-      type="text"
-      pattern="IMP|EXP"
-      class="validate"
-    />
-    <label for="status">status IMP/EXP</label>
-    <span class="helper-text" data-error="wrong" data-success="right"></span>
+    <select id="status" name="status">
+      <option value="" disabled selected>IMP/EXP</option>
+      <option value="IMP">IMP</option>
+      <option value="EXP">EXP</option>
+    </select>
+    <label for="status">Status</label>
   </div>
+
+
 
   <div class="input-field">
     <input id="POL" name="POL" type="text" />
@@ -91,7 +88,7 @@
     <span class="helper-text" data-error="wrong" data-success="right"></span>
   </div>
 
-  <input name="_csurf" value="{{csrf}}" hidden />
+  <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
 
   <div class="row center-align">
     <button id="add" class="btn btn-primary">Add container</button>
