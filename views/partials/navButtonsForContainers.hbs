@@ -1,32 +1,37 @@
-<li class="input-date">
-    <input id="dateFrom" type="text" class="datepicker">
-</li>
-<li class="input-date">
-    <input id="dateTo" type="text" class="datepicker">
-</li >
-<li title="add container manualy">
-    <a href="/containers/form">
-        <i class="large material-icons" "dropdown-trigger">youtube_searched_for</i>
-    </a>
+<li title="set period">
+    <form id="setPeriod" action="/containers/set-period" method="POST">
+        <li class="input-date">
+            <input id="dateFrom" name="dateFrom"type="text" class="datepicker">
+        </li>
+        <li class="input-date">
+            <input id="dateTo" name="dateTo" type="text" class="datepicker">
+        </li>
+        <li>
+            <a id="setPeriodReq">
+                <i class="large material-icons" "dropdown-trigger">youtube_searched_for</i>
+            </a>
+        </li>
+        <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+    </form>
 </li>
 <li class="active" title="to containers">
-        <a href="/containers">
-    <i class="material-icons">view_module</i>
+    <a href="/containers">
+        <i class="material-icons">view_module</i>
     </a>
 </li>
 <li title="make daily prospect">
-        <a href="/containers/planning">
-    <i class="material-icons">note</i>
+    <a href="/containers/planning">
+        <i class="material-icons">note</i>
     </a>
 </li>
 <li title="drivers">
-        <a href="/drivers">
-    <b>Dr</b> 
+    <a href="/drivers">
+        <b>Dr</b> 
     </a>
 </li>  
 <li title="vessels">
-        <a href="/vessels">
-    <b>Ves</b> 
+    <a href="/vessels">
+        <b>Ves</b> 
     </a>
 </li> 
 <li title="add from *.xlsx, *.xls file">

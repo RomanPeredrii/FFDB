@@ -65,11 +65,27 @@ document
         },
       });
       window.location.reload();
-      /******interim******/ log("SUCCESS");
     } catch (error) {
       /******interim******/ log("UPLOAD ERROR:", error);
     }
   });
+
+document.querySelector("#setPeriodReq")
+.addEventListener('click', async (e) => {
+if (!document.querySelector("#dateTo").value){
+  document.querySelector("#dateTo").value = 
+  new Date(Date.now()).toLocaleString().substring(0, 10);
+} 
+if (document.querySelector("#dateFrom").value) {  
+  document.querySelector("#setPeriod")
+  .appendChild(document.createElement("button"))
+  .setAttribute("id", "sendReq");
+  document.querySelector("#sendReq").click();
+  document.querySelector("#sendReq").remove();
+} else {
+  window.alert("SET PERIOD");
+}
+});
 
 /*************** AFTER **********/
 

@@ -5,10 +5,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
- document.querySelectorAll('.dropdown-trigger');
-  M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
-});
-
-document.addEventListener('DOMContentLoaded', function() {
 M.FormSelect.init(document.querySelectorAll('select'));
 });

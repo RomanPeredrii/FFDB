@@ -24,6 +24,10 @@ const container = new Schema({
   line: {
     type: String,
   },
+  date: /** temp **/ {
+    type: Date,
+    required: true
+  },
   vessel: {
     type: String,
   },

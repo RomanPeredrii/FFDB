@@ -10,8 +10,23 @@ const fs = require("fs");
 const auth = require("../middleware/auth");
 const date = require("../controllers/date");
 
-log(date());
-log(date("12.02.2022 MSC ELEONORA AO202R"));
+log(date().dateNOW);
+
+
+
+/** SERVISE **/
+
+// async function changeCollection () {
+//   const containers = await Container.find();
+//   containers.forEach(async (cont) => {
+//     cont.date = date(cont.vessel).ATB;
+//     log(cont.date, cont.vessel);
+//     await Container.findByIdAndUpdate(cont._id, cont);
+
+//   });
+// }
+
+
 
 router.get("/", auth, async (req, res) => {
   /******* get all containers here *******/
@@ -174,5 +189,37 @@ router.post("/add-many", auth, upload.single("file"), async (req, res) => {
     log("DEL BUFFER ERROR", error);
   }
 });
+
+router.post("/set-period", auth, async (req, res) => {
+  /******* get period containers here *******/
+  log("get period containers here", req.body);
+
+  try {
+    const containers = await Container.find({ date: { $gte: date(req.body.dateFrom).UTCdate, $lte: date(req.body.dateTo).UTCdate } });
+
+    containers.forEach((cont) => {
+      if (cont.driver) {
+        cont.driver = cont.driver.trim();
+        if (!cont.driver.length) {
+          cont.downtime = date(cont.vessel).downtime;
+        }
+      } else {
+        cont.downtime = date(cont.vessel).downtime;
+      }
+    });
+
+    res.render("containers",
+    {
+      activeUser: req.session.user.name,
+      title: "Containers",
+      place: "Containers DB",
+      isContainers: true,
+      containers
+    });
+  } catch (error) {
+    log("GET ALL CONTAINERS ERROR", error);
+  }
+});
+
 
 module.exports = router;
