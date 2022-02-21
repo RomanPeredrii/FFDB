@@ -10,6 +10,17 @@ document.querySelectorAll(".editContainerButton").forEach((node) => {
   });
 });
 
+document.querySelectorAll(".copyContainerButton").forEach((node) => {
+  node.addEventListener("click", async () => {
+    const id = node.parentNode.textContent
+      .trim()
+      .split("\n")
+      [node.parentNode.textContent.trim().split("\n").length - 1].trim();
+      log(id)
+    // window.location.href = `/container/${id}/edit?allow=true`;
+  });
+});
+
 document.querySelectorAll(".deleteContainerButton").forEach((node) => {
   node.addEventListener("click", async () => {
     const id = node.parentNode.textContent

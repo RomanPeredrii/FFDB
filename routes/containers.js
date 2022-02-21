@@ -156,6 +156,7 @@ router.post("/add-many", auth, upload.single("file"), async (req, res) => {
             POL: record.POL,
             POD: record.POD,
             line: record.line,
+            date: date(record.vessel).ATB,
             vessel: record.vessel,
             BL: record.BL,
             FD: record.FD,
