@@ -1,53 +1,44 @@
 const log = console.log;
 
-document.querySelectorAll(".editContainerButton").forEach((node) => {
-  node.addEventListener("click", async () => {
-    const id = node.parentNode.textContent
+function getId (n) {
+  return n.parentNode.textContent
       .trim()
       .split("\n")
-      [node.parentNode.textContent.trim().split("\n").length - 1].trim();
-    window.location.href = `/container/${id}/edit?allow=true`;
+      [n.parentNode.textContent.trim().split("\n").length - 1].trim();
+};
+
+document.querySelectorAll(".edit").forEach((node) => {
+  node.addEventListener("click", async () => {
+    window.location.href = `/container/${getId(node)}/edit?allow=true`;
   });
 });
 
-document.querySelectorAll(".copyContainerButton").forEach((node) => {
+
+document.querySelectorAll(".copy").forEach((node) => {
   node.addEventListener("click", async () => {
-    const id = node.parentNode.textContent
-      .trim()
-      .split("\n")
-      [node.parentNode.textContent.trim().split("\n").length - 1].trim();
-      log(id)
-    // window.location.href = `/container/${id}/edit?allow=true`;
+    window.location.href = `/container/${getId(node)}/edit?allow=true`;
   });
 });
 
-document.querySelectorAll(".deleteContainerButton").forEach((node) => {
-  node.addEventListener("click", async () => {
-    const id = node.parentNode.textContent
-      .trim()
-      .split("\n")
-      [node.parentNode.textContent.trim().split("\n").length - 1].trim();
-    try {
-      await fetch(`/container/${id}/delete`, {
-        method: "DELETE",
-        headers: {
-          "CSRF-Token": document.querySelector("#_csrf").value,
-        },
-      });
-      window.location.reload();
-    } catch (error) {
-      /******interim******/ log("DELETE CONTAINER ERROR:", error);
-    }
+document.querySelectorAll(".delete").forEach((node) => {
+node.addEventListener("click", async () => {
+  try {
+  await fetch(`/container/${getId(node)}/delete`, {
+      method: "DELETE",
+      headers: {
+      "CSRF-Token": document.querySelector("#_csrf").value,
+      },
   });
+  window.location.reload();
+  } catch (error) {
+  /******interim******/ log("DELETE CONTAINER ERROR:", error);
+  }
+});
 });
 
 document.querySelectorAll(".title").forEach((node) => {
   node.addEventListener("click", () => {
-    const id = node.parentNode.textContent
-      .trim()
-      .split("\n")
-      [node.parentNode.textContent.trim().split("\n").length - 1].trim();
-    window.open(`/container/${id}`, "_blank");
+    window.open(`/container/${getId(node)}`, "_blank");
   });
 });
 
@@ -68,7 +59,7 @@ document
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     try {
-      const response = await fetch("/containers/add-many", {
+      await fetch("/containers/add-many", {
         method: "POST",
         body: formData,
         headers: {
@@ -98,27 +89,4 @@ if (document.querySelector("#dateFrom").value) {
 }
 });
 
-/*************** AFTER **********/
 
-// document
-//   .querySelector(".addToActualPlan")
-//   .addEventListener("click", async () => {
-//     log("click");
-//     const data = [];
-//     document
-//       .querySelectorAll(".planing input:checked")
-//       .forEach(async (node) => {
-//         log("node", node.value.slice(0, node.value.length - 1));
-//         data.push(node.value.slice(0, node.value.length - 1));
-//       });
-//     log(JSON.stringify(data.toString()));
-
-//     const response = await fetch("/planning", {
-//       method: "POST",
-//       redirect: "manual",
-//       headers: {
-//         "CSRF-Token": document.querySelector("#_csrf").value,
-//       },
-//       body: JSON.stringify(data),
-//     });
-//   });

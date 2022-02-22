@@ -1,7 +1,26 @@
-{{#if containersForPlanning.length}}
+<div class="row">
+  <div class="col m12">
+    <ul class="tabs">
+      <li class="tab col m6" 
+        title="containers without driver">
+        <a class="allContainers" href="#containers-for-planning">
+          Full list
+        </a>
+      </li>
+
+      <li class="tab col m6" id="daily-planing"
+        title="daily planning containers">
+        <a class="dailyPlan" href="#planning">
+          Planning list
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="containers-for-planning" class="col m12">
+  {{#if containersForPlanning.length}}
   <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
-
     {{#each containersForPlanning}}
       <tbody>
         <tr>
@@ -21,7 +40,7 @@
           <td class="comments">{{comments}}</td>
           <td class="planing" title="Add to plan">
             <label>
-              <input type="checkbox" class="plan" name="planed" value={{id}} />
+              <input type="checkbox" id="planing" name="planed" value={{id}} />
               <span></span>
             </label>
           </td>
@@ -39,28 +58,51 @@
 {{else}}
   <p>Nothing there</p>
 {{/if}}
+  </div>
 
-  <!-- Dropdown Trigger -->
-  {{!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
-  
-  <!-- Dropdown Structure -->
-  
-  <ul id='dropdown1' class='dropdown-content'>
+  <div id="planning" class="col m12">
+    <form action="/planning/make-plan" method="POST">
+      <div>
+          {{#if containersForPlanning.length}}
+  <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+  <table class="striped highlight">
     {{#each containersForPlanning}}
-    <li class="data">{{number}}</li>
-    {{/each}} --}}
-  </ul>
-
-   {{!-- <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          {{!-- <i class="material-icons prefix">textsms</i> --}}
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input">Autocomplete</label>
-        </div>
+      <tbody>
+        <tr>
+          <td class="title">{{number}}</td>
+          <td class="size">{{size}}</td>
+          <td class="status">{{status}}</td>
+          <td class="client">{{client}}</td>
+          <td class="POL">{{POL}}</td>
+          <td class="POD">{{POD}}</td>
+          <td class="FD">{{FD}}</td>
+          <td class="BL">{{BL}}</td>
+          <td class="line">{{line}}</td>
+          <td class="vessel">{{vessel}}</td>          
+          <td class="driver">{{driver}}</td>
+          <td class="weight">{{weight}}</td>
+          <td class="cargo">{{cargo}}</td>
+          <td class="comments">{{comments}}</td>
+          <td class="editContainerButton" title="Edit">
+            <i class="material-icons">edit</i>
+          </td>
+          <td class="deleteContainerButton" title="To trash">
+            <i class="material-icons">delete_forever</i>
+          </td>
+          <td class="status" hidden>{{id}}</td>
+        </tr>
+      </tbody>
+    {{/each}}
+  </table>
+{{else}}
+  <p>Nothing there</p>
+{{/if}}
+  </div>
+      <div class="row center-align">
+        <button class="btn btn-primary" type="submit">make plan</button>
       </div>
-    </div>
-  </div> --}}
+    </form>
+  </div>
+
 
 <script src="/planning.js"></script>
