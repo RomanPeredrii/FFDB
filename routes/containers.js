@@ -9,6 +9,7 @@ const xlsx = require("xlsx");
 const fs = require("fs");
 const auth = require("../middleware/auth");
 const date = require("../controllers/date");
+const downtime = require("../controllers/container");
 
 log(date().dateNOW);
 
@@ -58,9 +59,11 @@ router.get("/", auth, async (req, res) => {
 
 router.get("/planning", auth, async (req, res) => {
   /******* get all containers without drivers *******/
-  // log("here containers for planning");
+  log("here containers for planning");
   try {
     const containersForPlanning = await Container.find({ driver: "" });
+    containersForPlanning.forEach(cont => cont.downtime = downtime(cont).downtime);
+
     res.render("planning", {
       activeUser: req.session.user.name,
       title: "Planning",
@@ -197,26 +200,17 @@ router.post("/set-period", auth, async (req, res) => {
 
   try {
     const containers = await Container.find({ date: { $gte: date(req.body.dateFrom).UTCdate, $lte: date(req.body.dateTo).UTCdate } });
-
-    containers.forEach((cont) => {
-      if (cont.driver) {
-        cont.driver = cont.driver.trim();
-        if (!cont.driver.length) {
-          cont.downtime = date(cont.vessel).downtime;
-        }
-      } else {
-        cont.downtime = date(cont.vessel).downtime;
-      }
-    });
-
-    res.render("containers",
-    {
-      activeUser: req.session.user.name,
-      title: "Containers",
-      place: "Containers DB",
-      isContainers: true,
-      containers
-    });
+    if (containers) {
+    containers.forEach((cont) => cont.downtime = downtime(cont));
+      res.render("containers",
+      {
+        activeUser: req.session.user.name,
+        title: "Containers",
+        place: "Containers DB",
+        isContainers: true,
+        containers
+      });
+    } 
   } catch (error) {
     log("GET ALL CONTAINERS ERROR", error);
   }

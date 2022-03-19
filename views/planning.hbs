@@ -21,8 +21,9 @@
   {{#if containersForPlanning.length}}
   <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
+    <tbody>
     {{#each containersForPlanning}}
-      <tbody>
+      
         <tr>
           <td class="title">{{number}}</td>
           <td class="size">{{size}}</td>
@@ -31,10 +32,9 @@
           <td class="POL">{{POL}}</td>
           <td class="POD">{{POD}}</td>
           <td class="FD">{{FD}}</td>
-          <td class="BL">{{BL}}</td>
           <td class="line">{{line}}</td>
           <td class="vessel">{{vessel}}</td>          
-          <td class="driver">{{driver}}</td>
+          <td class="downtime">{{downtime}}</td>
           <td class="weight">{{weight}}</td>
           <td class="cargo">{{cargo}}</td>
           <td class="comments">{{comments}}</td>
@@ -52,8 +52,9 @@
           </td>
           <td class="status" hidden>{{id}}</td>
         </tr>
-      </tbody>
+      
     {{/each}}
+    </tbody>
   </table>
 {{else}}
   <p>Nothing there</p>
@@ -72,6 +73,7 @@
       </tbody>
     
   </table>
+  {{!-- <input type="text" id="autocomplete-input" class="autocomplete" name="driver"/> --}}
   </div>
       <div class="row center-align">
         <button class="btn btn-primary" type="submit">make plan</button>

@@ -3,28 +3,30 @@ const { Router } = require("express");
 const router = Router();
 const auth = require("../middleware/auth");
 const mongoose = require('mongoose')
-const Container = require('../models/container')
+const Container = require('../models/container');
+const downtime = require("../controllers/container");
 // const Prospect = require('../models/prospect')
 
 router.post("/", async (req, res) => {
   log("PLANNING", req.body);
   // res.render("planning");
 
-  if (!req.body.length) { return}
+  if (!req.body.length) { return; }
   else {
     const containers = []
   req.body.forEach(async el => {
     
-    log(el.length)
+    log(el.length);
     try {
         containers.push(await Container.findById(el));
         if (containers.length === req.body.length) {
           log(containers);
-        res.send((containers))}
+          containers.map(cont => cont.downtime = downtime(cont));
+        res.send((containers));}
         
     }
     catch (error){
-        log('PLANNING ERROR', error)
+        log('PLANNING ERROR', error);
     }
   });
   // res.render('planning')
