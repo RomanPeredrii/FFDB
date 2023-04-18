@@ -37,7 +37,15 @@ const driver = new Schema({
     type: String,
     required: true,
   },
-  comments: String
+  comments: String,
+  ready: {
+    type: Boolean,
+    default: false
+  },
+  lost: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = model("Driver", driver);

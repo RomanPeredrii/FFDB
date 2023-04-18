@@ -26,6 +26,21 @@
   <div id="existing-drivers" class="col m12">
     {{#if drivers.length}}
       <table class="striped highlight centered">
+        <tr>
+          <th class="center-align">readiness</th>
+          <th class="center-align">first name</th>
+          <th class="center-align">lastname</th>
+          <th class="center-align">passport</th>
+          <th class="center-align">DOB</th>
+          <th class="center-align">vehicle</th>
+          <th class="center-align">trailer</th>
+          <th class="center-align">carrier</th>
+          <th class="center-align" >phone</th>
+          <th class="center-align">comments</th>
+          <th class="center-align">edit</th>
+          <th class="center-align">delete</th>
+        </tr>
+        
         <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
         {{#each drivers}}
           <tbody>
@@ -33,7 +48,7 @@
               <td class="firstName">{{firstName}}</td>
               <td class="lastName">{{lastName}}</td>
               <td class="passport">{{passport}}</td>
-              <td class="passport">{{DOB}}</td>
+              <td class="DOB">{{DOB}}</td>
               <td class="vehicle">{{vehicle}}</td>
               <td class="trailer">{{trailer}}</td>
               <td class="carrier">{{carrier}}</td>

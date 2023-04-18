@@ -12,16 +12,7 @@ const vessel = new Schema({
   ETB: {
     type: Date,
     required: true,
-  },
-  // containers: [
-  //   {
-  //     containerId: {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "Container",
-  //       required: true,
-  //     },
-  //   },
-  // ],
+  }
 });
 
 module.exports = model("Vessel", vessel);

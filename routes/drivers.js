@@ -5,9 +5,9 @@ const Driver = require("../models/driver");
 const auth = require("../middleware/auth");
 
 
-
+/******* get page all drivers here *******/ 
 router.get("/", auth, async (req, res) => {
-    /******* get all drivers here *******/ log("here get list of all drivers");
+log("here get list of all drivers");
     try {
       const drivers = await Driver.find();
       res.render("drivers", {
@@ -20,7 +20,29 @@ router.get("/", auth, async (req, res) => {
     } catch (err) {
       log("GET DRIVERS LIST ERROR", err);
     }
-  });
+});
 
+/******* get all drivers here *******/
+router.post("/", auth, async (req, res) => {
+  log("here get list of all drivers");
+  try {
+    const drivers = await Driver.find();
+    res.send(drivers)
+  } catch (err) {
+    log("GET DRIVERS LIST ERROR", err);
+  }
+});
 
+/******* here get list of ready drivers *******/ 
+router.post("/get-ready-drivers-list", auth, async (req, res) => {
+  log("here get list of ready drivers");
+    try {
+      const drivers = await Driver.find({ready: true});
+      res.send(drivers);
+ 
+    } catch (err) {
+      log("GET DRIVERS LIST ERROR", err);
+    }
+});
+  
 module.exports = router;

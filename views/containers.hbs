@@ -1,7 +1,25 @@
 {{#if containers.length}}
   <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
+    <tr>
+      <th>number</th>
+      <th>size</th>
+      <th>status</th>
+      <th>client</th>
+      <th>POL</th>
+      <th>POD</th>
+      <th>FD</th>
+      <th>BL</th>
+      <th>line</th>
+      <th>vessel</th>
+      <th>downtime</th>
+      <th>driver</th>
+      <th>weight</th>
+      <th>status</th>  
 
+
+      
+    </tr>
     {{#each containers}}
       <tbody>
         <tr>

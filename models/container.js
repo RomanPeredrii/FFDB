@@ -30,6 +30,7 @@ const container = new Schema({
   },
   vessel: {
     type: String,
+    default: ''
   },
   // vessel: {
   //   type: Schema.Types.ObjectId,
@@ -44,9 +45,13 @@ const container = new Schema({
   downtime: {
     type: Number,
   },
+  // driver: {
+  //   type: String
+  // },
   driver: {
-    type: String,
-  },
+      type: Schema.Types.ObjectId,
+      ref: "Driver"
+    },
   // carrier: {
   //   type: Schema.Types.ObjectId,
   //   ref: "Carrier"

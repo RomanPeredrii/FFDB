@@ -1,14 +1,19 @@
 <div class="row">
   <div class="col m12">
     <ul class="tabs">
-      <li class="tab col m6" 
+      <li class="tab col m4" 
         title="containers without driver">
         <a class="allContainers" href="#containers-for-planning">
-          Full list
+          Container list
         </a>
       </li>
-
-      <li class="tab col m6" id="daily-planing"
+      <li class="tab col m4" id="set-ready-driver"
+        title="set ready driver">
+        <a class="ready-drivers" href="#ready-drivers">
+          Driver list
+        </a>
+      </li>
+      <li class="tab col m4" id="daily-planing"
         title="daily planning containers">
         <a class="dailyPlan" href="#planning">
           Planning list
@@ -22,8 +27,7 @@
   <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
   <table class="striped highlight centered">
     <tbody>
-    {{#each containersForPlanning}}
-      
+    {{#each containersForPlanning}}      
         <tr>
           <td class="title">{{number}}</td>
           <td class="size">{{size}}</td>
@@ -44,41 +48,40 @@
               <span></span>
             </label>
           </td>
-          <td class="editContainerButton" title="Edit">
+          {{!-- <td class="editContainerButton" title="Edit">
             <i class="material-icons">edit</i>
           </td>
           <td class="deleteContainerButton" title="To trash">
             <i class="material-icons">delete_forever</i>
-          </td>
+          </td> --}}
           <td class="status" hidden>{{id}}</td>
-        </tr>
-      
-    {{/each}}
-    </tbody>
-  </table>
-{{else}}
-  <p>Nothing there</p>
-{{/if}}
+        </tr>      
+      {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p>Nothing there</p>
+  {{/if}}
   </div>
+
+  <div id="ready-drivers" class="col m12">
+    <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+    <table class="striped highlight">
+      <tbody id="redyDrivers">
+      </tbody>
+    </table>
+  </div>
+
 
   <div id="planning" class="col m12">
-    <form action="/planning/make-plan" method="POST">
-      <div>
-
-  <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
-  <table class="striped highlight">
-    
-      <tbody id="makePlan">
-        
-      </tbody>
-    
-  </table>
-  {{!-- <input type="text" id="autocomplete-input" class="autocomplete" name="driver"/> --}}
-  </div>
-      <div class="row center-align">
-        <button class="btn btn-primary" type="submit">make plan</button>
-      </div>
-    </form>
+    <input id="_csrf" name="_csrf" value="{{@root.csrf}}" hidden />
+    <table class="striped highlight">
+      <tbody id="makePlan">        
+      </tbody>    
+    </table>
+    <div class="row center-align">
+      <button class="btn btn-primary make-plan" >make plan</button>
+    </div>
   </div>
 
 

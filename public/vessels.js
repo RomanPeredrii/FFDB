@@ -1,9 +1,5 @@
 const log = console.log;
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   M.Datepicker.init(document.querySelectorAll(".datepicker"), {format: 'dd.mm.yyyy'});
-// });
-
 document.querySelectorAll(".deleteVesselButton").forEach((node) => {
   node.addEventListener("click", async () => {
     try {

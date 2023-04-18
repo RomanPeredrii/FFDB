@@ -4,6 +4,12 @@ const router = Router();
 const User = require("../models/user");
 const auth = require("../middleware/auth");
 const bcrypt = require("bcryptjs");
+const nodemailer = require('nodemailer');
+const { S_MAILER } = require('../data')
+const email = require ('../emails/newuser')
+
+
+const transporter = nodemailer.createTransport(S_MAILER);
 
 router.get("/", auth, async (req, res) => {
   /******* get all users here *******/ log("here get list of all users");
@@ -45,28 +51,6 @@ router.post("/:id/edit", auth, async (req, res) => {
   }
 });
 
-router.post("/add-new", auth, async (req, res) => {
-  /****** add new user *******/ log("here add new user", req.body);
-  if (req.body.password === req.body.confirmPassword) {
-    const hashPswd = await bcrypt.hash(req.body.password, 11);
-    const user = new User({
-      name: req.body.name,
-      login: req.body.login,
-      department: req.body.department,
-      email: req.body.email,
-      password: hashPswd,
-    });
-    try {
-      await user.save();
-      res.redirect("/admin");
-    } catch (error) {
-      log("ADD NEW USER ERROR", error);
-    }
-  } else {
-    res.send("confirm password error"); // doesn't receive on front!!!!!!!
-  }
-});
-
 router.post("/change-existing", auth, async (req, res) => {
   /****** change user record here *******/ log("change user", req.body);
   if (req.body.password === req.body.confirmPassword) {
@@ -77,8 +61,53 @@ router.post("/change-existing", auth, async (req, res) => {
     try {
       await User.findOneAndUpdate({ _id }, req.body);
       res.redirect("/admin");
-    } catch (error) {
-      log("EDIT USER ERROR", error);
+    } catch (err) {
+      log("EDIT USER ERROR", err);
+    }
+  } else {
+    res.send("confirm password error"); // doesn't receive on front!!!!!!!
+  }
+});
+
+router.post("/add-new", auth, async (req, res) => {
+  /****** add new user *******/ log("here add new user", req.body);
+  if (req.body.password === req.body.confirmPassword) {
+    const hashPswd = await bcrypt.hash(req.body.password, 11);
+    const user = new User({
+      name: req.body.name,
+      login: req.body.login,
+      department: req.body.department,
+      role: req.body.role,
+      email: req.body.email,
+      password: hashPswd, 
+    });
+    try {
+      await user.save();
+/****** get just saved user *******/
+      const savedUser = await User.findOne({name : user.name});
+
+      res.redirect("/admin");
+/****** check connected SMTP server *******/
+      transporter.verify(function (err, success) {
+        if (err) {
+          throw err;
+        } else {
+          log("SMTP server is ready");
+        }
+      });
+/****** send new user email*******/
+      transporter.sendMail(email(savedUser), 
+        (err, data) => {
+          if (err) {          
+            log('email send eror:', err);
+            throw err;
+          } else {
+            log('email is sent', data);
+          }
+      });
+
+    } catch (err) {
+      log("ADD NEW USER ERROR", err);
     }
   } else {
     res.send("confirm password error"); // doesn't receive on front!!!!!!!

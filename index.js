@@ -10,6 +10,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongodb-session")(session);
 const path = require("path");
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 const addRoutes = require("./routes/add");
 const containersRoutes = require("./routes/containers");
 const homeRoutes = require("./routes/home");
@@ -21,7 +22,7 @@ const driversRoutes = require("./routes/drivers");
 const driverRoutes = require("./routes/driver");
 const vesselRoutes = require("./routes/vessel");
 const vesselsRoutes = require("./routes/vessels");
-const { DB } = require("./data.js");
+const { DB, SECRET } = require("./data.js");
 const varMid = require("./middleware/variables");
 const csrf = require("csurf");
 
@@ -50,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "some secret",
+    secret: SECRET,
     resave: false,
     saveUninitialized: false,
     store,

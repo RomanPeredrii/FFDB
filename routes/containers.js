@@ -36,7 +36,7 @@ router.get("/", auth, async (req, res) => {
     const containers = await Container.find();
     containers.forEach((cont) => {
       if (cont.driver) {
-        cont.driver = cont.driver.trim();
+        // cont.driver = cont.driver.trim();
         if (!cont.driver.length) {
           cont.downtime = date(cont.vessel).downtime;
         }
@@ -61,7 +61,7 @@ router.get("/planning", auth, async (req, res) => {
   /******* get all containers without drivers *******/
   log("here containers for planning");
   try {
-    const containersForPlanning = await Container.find({ driver: "" });
+    const containersForPlanning = await Container.find({ driver: undefined });
     containersForPlanning.forEach(cont => cont.downtime = downtime(cont).downtime);
 
     res.render("planning", {

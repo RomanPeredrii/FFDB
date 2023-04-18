@@ -11,11 +11,11 @@ const prospect = new Schema({
   },
   containers: [
     {
-      containerId: {
+      
         type: Schema.Types.ObjectId,
         ref: "Container",
         required: true,
-      },
+      
     },
   ],
 });
